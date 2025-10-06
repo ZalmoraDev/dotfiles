@@ -5,7 +5,7 @@
     border-radius: 0;                                                                                                                                                                                                                                                                    
     font-family: "JetBrainsMono Nerd Font";                                                                                                                                                                                                                                              
     font-size: 13px;                                                                                                                                                                                                                                                                     
-    min-height: 0;
+    min-height: 0;            
 }
                                                                                                                                                                                                                                                                                          
 window#waybar {                                                                                                                                                                                                                                                                          
@@ -21,7 +21,6 @@ window#waybar {
     padding: 2px 4px 2px 4px;
     border-style: solid;
     border-width: 0px 0px 2px 0px;
-    margin: 0px 2px;
 }
 /* Modern syntax (if supported) */
 /* Default color for workspaces 1-4 */
@@ -40,8 +39,9 @@ window#waybar {
 }
 
 #workspaces button:nth-child(n+8):nth-child(-n+10) {
-    border-color: rgb(0, 60, 100);
+    border-color: rgb(0, 0, 100);
 }
 #workspaces button:nth-child(n+8):nth-child(-n+10).active {
-    border-color: rgb(0, 150, 255);
+    border-color: rgb(0, 0, 255);
 }
+\
