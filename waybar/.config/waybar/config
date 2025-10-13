@@ -18,8 +18,9 @@
     "modules-right": [
         "pulseaudio",
         "cpu",
+        "custom/gpu",
         "memory",
-        "temperature",
+        //"temperature",
         "battery",
         "network",
         "tray"
@@ -92,17 +93,7 @@
     // MODULES-RIGHT //
     // --------------//
     
-    // (1/7) Tray
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10,
-        // "icons": {
-        //   "blueman": "bluetooth",
-        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
-        // }
-    },
-    
-    // (2/7) Pulseaudio volume control with pavucontrol on click
+    // (1/8) Pulseaudio volume control with pavucontrol on click
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-bluetooth": "{icon}  {volume}%",
@@ -120,17 +111,26 @@
         "on-click": "pavucontrol"
     },
     
-    // (3/7) CPU usage
+    // (2/8) CPU usage
     "cpu": {
-        "format": " {usage}%"
+        "format": " {usage}%",
+        "interval": 5
     },
     
-    // (4/7) Memory usage
+    // (3/8) GPU usage (NVIDIA only, requires nvidia-smi)
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "format": "󰍹 {}%",
+        "interval": 5
+    },
+    
+    // (4/8) Memory usage
     "memory": {
-        "format": " {}%"
+        "format": " {used:0.1f}GB/{total:0.1f}GB",
+        "interval": 5
     },
     
-    // (5/7) CPU Temperature
+    // (5/8) CPU Temperature (NOT USED, peeks at 100°C because of how AMD reports temp)
      "temperature": {
         "interval": 1,
         "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
@@ -139,7 +139,7 @@
         "format": "{temperatureC}°C"
     },
     
-    // (6/7) Battery status
+    // (6/8) Battery status
     "battery": {
         "states": {
             "good": 95,
@@ -148,11 +148,11 @@
         },
         "format": "{icon} {capacity}%",
         "tooltip-format": "Health: {health} \n{timeTo}",
-        "full-at": 98,
+        "full-at": 97,
         "format-icons": ["", "", "", "", ""],
     },
     
-    // (7/7) Network status (WiFi & Ethernet)
+    // (7/8) Network status (WiFi & Ethernet)
     "network": {
         "format-wifi": "  {ifname} {signalStrength}%",
         "format-ethernet": " {ifname}",
@@ -160,5 +160,15 @@
         "format-linked": "󰈀 {ifname} (No IP) ",
         "format-disconnected": " Offline",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    }
+    },
+    
+    // (8/8) Tray
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10,
+        // "icons": {
+        //   "blueman": "bluetooth",
+        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+        // }
+    },
 }
