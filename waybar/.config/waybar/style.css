@@ -118,7 +118,10 @@ window#waybar {
     border-radius: 12px;
 }
 
-#tray,
+#tray {
+    background-color: #363636;
+}
+
 #custom-power {
     font-size: 22px;
     border-radius: 8px;
@@ -133,7 +136,6 @@ window#waybar {
 #network:hover,
 #pulseaudio:hover,
 #custom-media:hover,
-#tray:hover,
 #temperature:hover {
     padding: 0 8px;
     color: #ffffff;

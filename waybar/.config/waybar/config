@@ -16,13 +16,13 @@
         "clock"
     ],
     "modules-right": [
-        "tray",
         "pulseaudio",
-        //"cpu",
-        //"memory",
-        //"temperature",
+        "cpu",
+        "memory",
+        "temperature",
         "battery",
-        "network"
+        "network",
+        "tray"
     ],
     
     // -------------//
@@ -36,11 +36,11 @@
 		"menu": "on-click",
 		"menu-file": "$HOME/.config/waybar/custom_modules/power_menu.xml", // Menu file in resources folder
 		"menu-actions": {
-			" Shutdown": "shutdown now",
-			" Reboot": "reboot",
-			"󰒲 Suspend": "systemctl suspend",
-			" Hibernate": "systemctl hibernate",
-			" Lock": "hyprlock"
+			"shutdown": "shutdown now",
+			"reboot": "reboot",
+			"suspend": "systemctl suspend",
+			"hibernate": "systemctl hibernate",
+			"lock": "hyprlock"
 		}
     },
     
@@ -69,7 +69,9 @@
         "exec": "$HOME/.config/waybar/custom_modules/mediaplayer.py --player spotify 2> /dev/null",
         "on-click": "playerctl -p spotify play-pause",
         "on-click-right": "playerctl -p spotify next",
-        "on-click-middle": "playerctl -p spotify previous"
+        "on-click-middle": "playerctl -p spotify previous",
+        "on-scroll-up": "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek int64:10000000",
+        "on-scroll-down": "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek int64:-10000000"
     },
     
     
