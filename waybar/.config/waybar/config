@@ -148,7 +148,7 @@
         },
         "format": "{icon} {capacity}%",
         "tooltip-format": "Health: {health} \n{timeTo}",
-        "full-at": 97,
+        "full-at": 95,
         "format-icons": ["", "", "", "", ""],
     },
     
@@ -159,7 +159,7 @@
         "tooltip-format": " {ifname} via {gwaddr}",
         "format-linked": "󰈀 {ifname} (No IP) ",
         "format-disconnected": " Offline",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "on-click": "kitty -e bluetui"
     },
     
     // (8/8) Tray

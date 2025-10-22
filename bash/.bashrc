@@ -2,6 +2,7 @@
 # ~/.bashrc
 #
 
+# Powerlevel-like terminal input
 eval "$(starship init bash)"
 
 # If not running interactively, don't do anything
@@ -15,5 +16,5 @@ alias ll='ls -l'
 alias l='ls'
 
 alias grep='grep --color=auto'
-alias nano='nano -ET4 -ilq'
+alias nano='nano -ET4 -i'
 PS1='[\u@\h \W]\$ '

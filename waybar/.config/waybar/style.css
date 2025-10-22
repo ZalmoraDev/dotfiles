@@ -40,7 +40,7 @@ window#waybar {
 }
 
 #workspaces button:nth-child(n+1):nth-child(-n+4) {
-    border-color: rgb(100, 0, 0);
+    border-color: rgb(125, 0, 0);
 }
 
 #workspaces button:nth-child(n+1):nth-child(-n+4).active {
