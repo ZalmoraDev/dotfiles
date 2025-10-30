@@ -83,7 +83,7 @@
        
     // (1/1) Clock module, formatted day of month + hour:minute + calendar in tooltip
     "clock": {
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "tooltip-format": "<big>{:%a %d-%m-%Y}</big>\n<tt><small>{calendar}</small></tt>",
         "format": "{:%e %H:%M}"
     },
     
