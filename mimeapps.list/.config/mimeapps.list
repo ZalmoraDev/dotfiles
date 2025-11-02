@@ -1,0 +1,17 @@
+[Default Applications]
+application/pdf=okular.desktop
+application/pur=PureRef-2.0.3_x64.Appimage.desktop
+
+image/gif=nomacs.desktop
+image/jpeg=nomacs.desktop
+image/jpg=nomacs.desktop
+image/png=nomacs.desktop
+image/webp=nomacs.desktop
+
+x-scheme-handler/gitkraken=GitKraken.desktop
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+
+application/octet-stream=org.kde.kate.desktop
+application/x-zerosize=org.kde.kate.desktop
+inode/x-empty=org.kde.kate.desktop
+text/plain=org.kde.kate.desktop
