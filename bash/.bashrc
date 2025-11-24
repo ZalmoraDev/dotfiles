@@ -35,8 +35,8 @@ alias gitp='git push origin'
 alias dockernuke='docker ps -aq | xargs docker rm -f; docker images -aq | docker rmi -f; docker network prune -f'
 
 # ssh
-if [ -f ~/.bash_secrets ]; then
-    source ~/.secrets
+if [ -f ../secrets ]; then
+    source ../secrets
 fi
 alias sshvps='ssh -i $VPS_KEY root@$VPS_IP'
 
