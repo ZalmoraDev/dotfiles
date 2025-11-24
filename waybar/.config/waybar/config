@@ -1,0 +1,181 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 30,
+    "spacing": 4,
+    
+    // --------------//
+    // MODULE GROUPS //
+    // --------------//
+    "modules-left": [
+        "custom/power",
+        "hyprland/workspaces",
+        "custom/media"
+    ],
+    "modules-center": [
+        //"clock"
+        "custom/clockblink"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "cpu",
+        "custom/gpu",
+        "memory",
+        //"temperature",
+        "battery",
+        "network",
+        "tray"
+    ],
+    
+    // -------------//
+    // MODULES-LEFT //
+    // -------------//
+   
+    // (1/3) Combination of 'custom/power' & 'power-profiles-daemon'
+    "custom/power": {
+        "format" : "󰣇",
+		"tooltip": false,
+		"menu": "on-click",
+		"menu-file": "$HOME/.config/waybar/custom_modules/power_menu.xml", // Menu file in resources folder
+		"menu-actions": {
+			"shutdown": "shutdown now",
+			"reboot": "reboot",
+			"suspend": "systemctl suspend",
+			"hibernate": "systemctl hibernate",
+			"lock": "hyprlock"
+		}
+    },
+    
+    // (2/3) Hyprland workspaces module
+    "hyprland/workspaces": {
+        "format": "{windows}",
+        "format-window-separator": "",
+        "workspace-taskbar": {
+            "enable": true,
+            "update-active-window": true,
+            "format": "{icon}",
+            "icon-size": 18,
+            "on-click-window": "${SCRIPTS}/focus-window.sh {address} {button}"
+        },
+        "persistent-workspaces": {
+            "*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        }
+    },
+    
+    // (3/3) Media player (spotify)
+    "custom/media": {
+        "format": "{text}",
+        "return-type": "json",
+        "max-length": 60,
+        "escape": true,
+        "markup": false,
+        "exec": "$HOME/.config/waybar/custom_modules/mediaplayer.py --player spotify 2> /dev/null",
+        "on-click": "playerctl -p spotify play-pause",
+        "on-click-right": "playerctl -p spotify next",
+        "on-click-middle": "playerctl -p spotify previous",
+        "on-scroll-up": "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek int64:10000000",
+        "on-scroll-down": "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek int64:-10000000"
+    },
+    
+    
+    
+    // ---------------//
+    // MODULES-CENTER //
+    // ---------------//
+       
+    // (1/1) Clock module, formatted day of month + hour:minute + calendar in tooltip
+    //"clock": {
+    //    "tooltip-format": "<big>{:%a %d-%m-%Y}</big>\n<tt><small>{calendar}</small></tt>",
+    //    "format": "{:%a %e %H:%M}"
+    //},
+    "custom/clockblink": {
+        "exec": "~/.config/waybar/custom_modules/blinkclock.sh",
+        "interval": 10,
+        "return-type": "json",
+        "format": "{text}"
+    },
+    
+    
+    // --------------//
+    // MODULES-RIGHT //
+    // --------------//
+    
+    // (1/8) Pulseaudio volume control with pavucontrol on click
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon}  {volume}%",
+        "format-bluetooth-muted": "  {volume}%",
+        "format-muted": "{volume}%",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    
+    // (2/8) CPU usage
+    "cpu": {
+        "format": " {usage}%",
+        "interval": 5
+    },
+    
+    // (3/8) GPU usage (NVIDIA only, requires nvidia-smi)
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "format": "󰍹 {}%",
+        "interval": 5
+    },
+    
+    // (4/8) Memory usage
+    "memory": {
+        "format": " {used:0.1f}GB/{total:0.1f}GB",
+        "interval": 5
+    },
+    
+    // (5/8) CPU Temperature (NOT USED, peeks at 100°C because of how AMD reports temp)
+     "temperature": {
+        "interval": 1,
+        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+        "critical-threshold": 105,
+        "format-critical": " {temperatureC}°C",
+        "format": "{temperatureC}°C"
+    },
+    
+    // (6/8) Battery status
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "tooltip-format": "Health: {health} \n{timeTo}",
+        "full-at": 95,
+        "format-icons": ["", "", "", "", ""],
+    },
+    
+    // (7/8) Network status (WiFi & Ethernet)
+    "network": {
+        "format-wifi": "  {ifname} {signalStrength}%",
+        "format-ethernet": " {ifname}",
+        "tooltip-format": " {ifname} via {gwaddr}",
+        "format-linked": "󰈀 {ifname} (No IP) ",
+        "format-disconnected": " Offline",
+        "on-click": "kitty -e bluetui"
+    },
+    
+    // (8/8) Tray
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10,
+        // "icons": {
+        //   "blueman": "bluetooth",
+        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+        // }
+    },
+}

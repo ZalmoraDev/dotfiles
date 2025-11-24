@@ -1,0 +1,234 @@
+@keyframes blink {
+    to {
+        /*background-color: rgb(15, 15, 15);*/
+        background-color: #000;
+        color: #ffffff;
+    }
+}
+
+@keyframes clock-blink {
+    to {
+        background-color: #FF9F2C;
+        color: #ffffff;
+    }
+}
+
+.clock-white {
+    color: #FFFFFF; 
+}
+
+.clock-orange {
+    animation-name: clock-blink;
+    animation-duration: 0.4s;
+    animation-timing-function: steps(12);
+    animation-iteration-count:8;
+    animation-direction: alternate;
+    /*background-color: rgb(15, 15, 15);*/
+    background-color: #000;
+}
+
+#custom-clockblink {
+    padding: 0 8px;
+    border-radius: 8px;
+}
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", FontAwesome, sans-serif;
+    font-size: 13px;
+}
+
+window#waybar {
+    /*background-color: rgb(15, 15, 15);*/
+    background-color: #000;
+    color: #fff;
+    border-style: solid;
+    border-color: #333333;
+}
+
+/* ----------------- */
+/* Workspace theming */
+/* ----------------- */
+#workspaces button {
+    background-color: transparent;
+    color: #ffffff;
+
+    padding: 0px 4px;
+    border-style: solid;
+    border-width: 0px 0px 2px 0px;
+    margin: 0px 2px;
+}
+
+#workspaces button.empty {
+    min-width: 0px;
+    padding: 0px 4px;
+}
+
+#workspaces button:nth-child(n+1):nth-child(-n+3):hover {
+    background: rgb(50, 0, 0);
+}
+
+#workspaces button:nth-child(n+1):nth-child(-n+3) {
+    border-color: rgb(125, 0, 0);
+}
+
+#workspaces button:nth-child(n+1):nth-child(-n+3).active {
+    border-color: rgb(255, 0, 0);
+}
+
+#workspaces button:nth-child(n+1):nth-child(-n+3).urgent {
+    animation-name: blink;
+    animation-duration: 0.4s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    background-color: rgb(255, 0, 0);
+}
+
+
+#workspaces button:nth-child(n+4):nth-child(-n+6):hover {
+    background: rgb(0, 50, 0);
+}
+
+#workspaces button:nth-child(n+4):nth-child(-n+6) {
+    border-color: rgb(0, 100, 0);
+}
+
+#workspaces button:nth-child(n+4):nth-child(-n+6).active {
+    border-color: rgb(0, 255, 0);
+}
+
+#workspaces button:nth-child(n+4):nth-child(-n+6).urgent {
+    animation-name: blink;
+    animation-duration: 0.4s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    background-color: rgb(0, 255, 0);
+}
+
+
+#workspaces button:nth-child(n+7):nth-child(-n+9):hover {
+    background: rgb(0, 30, 50);
+}
+
+#workspaces button:nth-child(n+7):nth-child(-n+9) {
+    border-color: rgb(0, 60, 100);
+}
+
+#workspaces button:nth-child(n+7):nth-child(-n+9).active {
+    border-color: rgb(0, 150, 255);
+}
+
+#workspaces button:nth-child(n+7):nth-child(-n+9).urgent0 {
+    animation-name: blink;
+    animation-duration: 0.4s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    background-color: rgb(0, 150, 255);
+}
+
+/* --------------- */
+/* Modules section */
+/* --------------- */
+#custom-power,
+#battery,
+#cpu,
+#custom-gpu,
+#memory,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#temperature {
+    padding: 0 8px;
+    color: #666666;
+    background-color: #17191C;
+    border-radius: 8px;
+    margin-top: 2px;  /* Add this line */
+}
+
+#tray {
+    background-color: #2c2d2f;
+}
+
+#custom-power {
+    font-size: 22px;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 0 11px 0 6px;
+}
+
+#custom-media {
+    background-color: rgba(0, 0, 0, 0);
+    color: #fff;
+}
+
+#custom-power:hover,
+#battery:hover,
+#cpu:hover,
+#custom-gpu:hover,
+#memory:hover,
+#network:hover,
+#pulseaudio:hover,
+#custom-media:hover,
+#temperature:hover {
+    padding: 0 8px;
+    color: #ffffff;
+    background-color: #2c2d2f;
+}
+
+#custom-power:hover {
+    border-radius: 8px;
+    padding: 0 11px 0 6px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#battery.warning {
+    background-color: #442200;
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#network.disconnected {
+    color: #ffffff;
+    background-color: #f53c3c;
+}
+
+#pulseaudio.muted {
+    text-decoration: line-through;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+#temperature.critical {
+    background-color: #f53c3c;
+    color: #ffffff;
+}
