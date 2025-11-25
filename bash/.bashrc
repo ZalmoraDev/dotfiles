@@ -35,10 +35,10 @@ alias gitp='git push origin'
 alias dockernuke='docker ps -aq | xargs docker rm -f; docker images -aq | docker rmi -f; docker network prune -f'
 
 # ssh
-if [ -f ../secrets ]; then
-    source ../secrets
+if [ -f ../.secrets ]; then
+    source ../.secrets
 fi
-alias sshvps='ssh -i $VPS_KEY root@$VPS_IP'
+alias ssh-vps='ssh -i $VPS_KEY root@$VPS_IP'
 
 # general
 alias updateall='sudo pacman -Syu; yay -Syu; flatpak update'
