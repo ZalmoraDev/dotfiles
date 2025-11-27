@@ -18,10 +18,11 @@
     ],
     "modules-right": [
         "pulseaudio",
+        //"custom/sysstats",
         "cpu",
         "custom/gpu",
         "memory",
-        //"temperature",
+        //"temperature", DID NOT TRACK WELL WITH MY LAPTOP, AS IT BOOSTS TO 100C instead of achieving 100% use
         "battery",
         "network",
         "tray"
@@ -83,18 +84,14 @@
     // MODULES-CENTER //
     // ---------------//
        
-    // (1/1) Clock module, formatted day of month + hour:minute + calendar in tooltip
-    //"clock": {
-    //    "tooltip-format": "<big>{:%a %d-%m-%Y}</big>\n<tt><small>{calendar}</small></tt>",
-    //    "format": "{:%a %e %H:%M}"
-    //},
+    // (1/1) Custom clock module. Weekday, day of month, hour:minute
     "custom/clockblink": {
         "exec": "~/.config/waybar/custom_modules/blinkclock.sh",
         "interval": 10,
         "return-type": "json",
         "format": "{text}"
+        //"tooltip-format": "<big>{:%a %d-%m-%Y}</big>\n<tt><small>{calendar}</small></tt>" NOT WORKING WITH CUSTOM MODULE
     },
-    
     
     // --------------//
     // MODULES-RIGHT //
@@ -123,7 +120,14 @@
         "format": " {usage}%",
         "interval": 5
     },
-    
+
+    "custom/sysstats": {
+        "exec": "~/.config/waybar/custom_modules/sysstats.sh",
+        "interval": 5,
+        "return-type": "json",
+        "format": "{text}"
+    },
+
     // (3/8) GPU usage (NVIDIA only, requires nvidia-smi)
     "custom/gpu": {
         "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
@@ -157,6 +161,7 @@
         "tooltip-format": "Health: {health} \n{timeTo}",
         "full-at": 95,
         "format-icons": ["", "", "", "", ""],
+        "format-icons-charging": ["󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜"]
     },
     
     // (7/8) Network status (WiFi & Ethernet)
@@ -171,11 +176,6 @@
     
     // (8/8) Tray
     "tray": {
-        // "icon-size": 21,
-        "spacing": 10,
-        // "icons": {
-        //   "blueman": "bluetooth",
-        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
-        // }
+        "spacing": 10
     },
 }
