@@ -147,8 +147,8 @@ window#waybar {
     padding: 0 8px;
     color: #666666;
     background-color: #0D0D0D;
-    border-radius: 8px;
-    margin-top: 2px;  /* Add this line */
+    border-radius: 12px;
+    margin-top: 2px;
 }
 
 #tray {

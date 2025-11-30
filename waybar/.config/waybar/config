@@ -15,6 +15,7 @@
     "modules-center": [
         //"clock"
         "custom/clockblink"
+        //"hyprland/window"
     ],
     "modules-right": [
         "pulseaudio",
