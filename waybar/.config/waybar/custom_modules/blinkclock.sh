@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TIME=$(date "+%a %e %H:%M")
+TIME=$(date "+%a %-d %H:%M")
 MIN=$(date "+%M")
 
 # Use class names instead of color

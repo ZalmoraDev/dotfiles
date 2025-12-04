@@ -29,7 +29,7 @@
 
 #custom-clockblink {
     padding: 0 8px;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 * {
@@ -56,8 +56,8 @@ window#waybar {
 
     padding: 0px 4px;
     border-style: solid;
-    border-width: 0px 0px 2px 0px;
-    margin: 0px 2px;
+    border-width: 0px 0px 1px 0px;
+    margin: 0px 3px 0px 0px;
 }
 
 #workspaces button.empty {
@@ -70,10 +70,11 @@ window#waybar {
 }
 
 #workspaces button:nth-child(n+1):nth-child(-n+3) {
-    border-color: rgb(125, 0, 0);
+    border-color: rgb(150, 0, 0);
 }
 
 #workspaces button:nth-child(n+1):nth-child(-n+3).active {
+    border-width: 0px 0px 2px 0px;
     border-color: rgb(255, 0, 0);
 }
 
@@ -92,10 +93,11 @@ window#waybar {
 }
 
 #workspaces button:nth-child(n+4):nth-child(-n+6) {
-    border-color: rgb(0, 100, 0);
+    border-color: rgb(0, 125, 0);
 }
 
 #workspaces button:nth-child(n+4):nth-child(-n+6).active {
+    border-width: 0px 0px 2px 0px;
     border-color: rgb(0, 255, 0);
 }
 
@@ -114,10 +116,11 @@ window#waybar {
 }
 
 #workspaces button:nth-child(n+7):nth-child(-n+9) {
-    border-color: rgb(0, 60, 100);
+    border-color: rgb(0, 72, 120);
 }
 
 #workspaces button:nth-child(n+7):nth-child(-n+9).active {
+    border-width: 0px 0px 2px 0px;
     border-color: rgb(0, 150, 255);
 }
 
@@ -144,7 +147,7 @@ window#waybar {
 #tray,
 #temperature,
 #custom-sysstats{
-    padding: 0 8px;
+    padding: 0 6px;
     color: #666666;
     background-color: #0D0D0D;
     border-radius: 12px;
@@ -157,7 +160,6 @@ window#waybar {
 
 #custom-power {
     font-size: 22px;
-    border-radius: 8px;
     color: #ffffff;
     padding: 0 11px 0 6px;
 }
@@ -177,14 +179,8 @@ window#waybar {
 #custom-media:hover,
 #temperature:hover,
 #custom-sysstats:hover{
-    padding: 0 8px;
     color: #ffffff;
     background-color: #2c2d2f;
-}
-
-#custom-power:hover {
-    border-radius: 8px;
-    padding: 0 11px 0 6px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
