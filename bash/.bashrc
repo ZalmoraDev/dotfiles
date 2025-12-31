@@ -2,7 +2,7 @@
 
 PS1='[\u@\h \W]\$ '
 
-# load .gitignore'd secrets (screw you Kali users)
+# load .gitignore'd secrets
 secrets="$HOME/dotfiles/.secrets"
 if [ -f "$secrets" ]; then
     source "$secrets"
@@ -23,11 +23,17 @@ source /usr/share/nvm/init-nvm.sh
 export TERM=xterm-256color
 export COLORTERM=truecolor
 
+export OLLAMA_HOST=0.0.0.0
+
 ##################################################
 
 # general
-# Not fully-automatic, since that would bring risks
+# Not fully-automatic, would bring risks
 alias updateall='sudo pacman -Syu; yay -Syu; flatpak update'
+# Rename to all lowercase with hyphens for spaces/underscores
+re2linform() {
+    perl-rename 'y/A-Z/a-z/; s/[ _]+/-/g; s/-+/-/g' "$@"
+}
 
 # ls
 alias ls='ls --color=auto'
@@ -44,9 +50,33 @@ alias gita='git add .'
 alias gitc='git commit -m' # message to be inserted by user
 alias gitp='git push origin'
 
-# docker
+# docker / podman
 # I can't be bothered
 alias docker-nuke='docker container prune -f; docker image prune -af; docker volume prune -f; docker network prune -f'
+# Starts/Stops: [Ollama, Docker] open-webui, SearXNG & Kokoro-FastAPI (TTS)
+llm() {
+  case "$1" in
+    start-max)
+      sudo systemctl start ollama docker || return
+      docker compose -p llm start
+      ;;
+    stop-max)
+      docker compose -p llm stop || return
+      sudo systemctl stop docker ollama
+      ;;
+    start-min)
+      docker compose -p llm start
+      ;;
+    stop-min)
+      docker compose -p llm stop
+      ;;
+    *)
+      echo "Usage: llm {start-max|stop-max|start-min|stop-min}"
+      ;;
+  esac
+}
 
 # ssh
 alias ssh-vps='ssh -i $SECRET_VPS_KEY root@$SECRET_VPS_IP'
+
+
