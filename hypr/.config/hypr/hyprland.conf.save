@@ -1,3 +1,4 @@
+
 ########################################
 ### MONITORS, WINDOWS AND WORKSPACES ###
 ########################################
@@ -40,10 +41,9 @@ workspace = 9, monitor:DP-2
 
 # CUSTOM Start GUI applications automatically on boot
 exec-once = [workspace 1 silent] anki
-#exec-once = [workspace 3 silent] libreoffice /home/sv/documents/reading/jb-refererencecard.odg
-exec-once = [workspace 4] phpstorm
+exec-once = [workspace 7] com.brave.Browser
 exec-once = [workspace 9 silent] spotify
-exec-once = [workspace 9 silent] blanket
+
 
 
 ###################
@@ -66,7 +66,7 @@ exec = gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 exec = gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 
 exec-once = kwalletd6
-exec-once = waybar & hyprpaper & hypridle & hyprshot
+exec-once = waybar & hyprpaper & hypridle & hyprshot & hyprsunset
 exec-once = swaync
 exec-once = wl-paste --watch cliphist store
 
@@ -245,7 +245,6 @@ bind = $mainMod, Q, exec, $terminal
 bind = $mainMod, W, exec, flatpak run com.brave.Browser
 bind = $mainMod, E, exec, $fileManager
 bind = $mainMod, R, exec, anki
-bind = $mainMod, T, exec, libreoffice /home/sv/documents/reading/jb-refererencecard.odg
 
 # Window behavior
 bind = $mainMod, A, togglefloating,
@@ -347,6 +346,3 @@ windowrule = no_initial_focus on, no_focus on, match:class ^(.*affinity\.exe.*)$
 
 # Xpad
 windowrule = float on, match:class xpad
-
-# Wine, open .exe windows wine on main HDMI screen
-#windowrule = monitor 1, initialClass:(?i).*\.exe$

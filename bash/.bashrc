@@ -28,8 +28,6 @@ export OLLAMA_HOST=0.0.0.0
 ##################################################
 
 # general
-# Not fully-automatic, would bring risks
-alias updateall='sudo pacman -Syu; yay -Syu; flatpak update'
 # Rename to all lowercase with hyphens for spaces/underscores
 re2linform() {
     perl-rename 'y/A-Z/a-z/; s/[ _]+/-/g; s/-+/-/g' "$@"
@@ -75,6 +73,8 @@ llm() {
       ;;
   esac
 }
+
+alias llm-clean='sudo rm -rf /home/sv/code/containers/llm/open-webui/uploads/* /home/sv/code/containers/llm/open-webui/cache/audio/speech/*'
 
 # ssh
 alias ssh-vps='ssh -i $SECRET_VPS_KEY root@$SECRET_VPS_IP'
