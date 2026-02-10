@@ -10,7 +10,7 @@
     "modules-left": [
         "custom/power",
         "hyprland/workspaces",
-        "custom/media"
+        "mpris"
     ],
     "modules-center": [
         //"clock"
@@ -65,18 +65,20 @@
     },
     
     // (3/3) Media player (spotify)
-    "custom/media": {
-        "format": "{text}",
-        "return-type": "json",
+    "mpris": {
+        "player": "spotify",
+        "format": "▶ {artist} - {title}",
+        "format-paused": "⏸ {artist} - {title}",
+        "format-stopped": "",
+        "format-disconnected": "",
         "max-length": 60,
-        "escape": true,
-        "markup": false,
-        "exec": "$HOME/.config/waybar/custom_modules/mediaplayer.py --player spotify 2> /dev/null",
+        "tooltip": false,
+
         "on-click": "playerctl -p spotify play-pause",
         "on-click-right": "playerctl -p spotify next",
         "on-click-middle": "playerctl -p spotify previous",
-        "on-scroll-up": "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek int64:10000000",
-        "on-scroll-down": "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek int64:-10000000"
+        "on-scroll-up": "playerctl -p spotify position 10+",
+        "on-scroll-down": "playerctl -p spotify position 10-",
     },
     
     
