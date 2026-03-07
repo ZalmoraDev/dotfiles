@@ -52,6 +52,9 @@ alias git-authors='git fame --cost hour -wMC --format svg --min 1 > docs/authors
 # docker / podman
 # I can't be bothered
 alias docker-nuke='docker container prune -f; docker image prune -af; docker volume prune -f; docker network prune -f'
+alias dockerup='docker compose up'
+alias dockerdown='docker compose down'
+
 # Starts/Stops: [Ollama, Docker] open-webui, SearXNG & Kokoro-FastAPI (TTS)
 llm() {
   case "$1" in
