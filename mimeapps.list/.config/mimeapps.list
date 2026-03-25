@@ -12,7 +12,7 @@ image/png=nomacs.desktop
 image/webp=nomacs.desktop
 
 x-scheme-handler/gitkraken=GitKraken.desktop
-x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+x-scheme-handler/jetbrains=jetbrainsd.desktop
 
 application/octet-stream=org.kde.kate.desktop
 application/x-zerosize=org.kde.kate.desktop

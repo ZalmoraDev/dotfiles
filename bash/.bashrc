@@ -52,8 +52,9 @@ alias git-authors='git fame --cost hour -wMC --format svg --min 1 > docs/authors
 # docker / podman
 # I can't be bothered
 alias docker-nuke='docker container prune -f; docker image prune -af; docker volume prune -f; docker network prune -f'
-alias dockerup='docker compose up'
-alias dockerdown='docker compose down'
+alias dcu='docker compose up'
+alias dcd='docker compose down'
+alias dcdv='docker compose down -v'
 
 # Starts/Stops: [Ollama, Docker] open-webui, SearXNG & Kokoro-FastAPI (TTS)
 llm() {
@@ -82,5 +83,3 @@ alias llm-clean='sudo rm -rf /home/sv/code/containers/llm/open-webui/uploads/* /
 
 # ssh
 alias ssh-vps='ssh -i $SECRET_VPS_KEY root@$SECRET_VPS_IP'
-
-
