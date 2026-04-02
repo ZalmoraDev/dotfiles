@@ -45,7 +45,8 @@
 			"suspend": "systemctl suspend",
 			"hibernate": "systemctl hibernate",
 			"lock": "hyprlock"
-		}
+		},
+		"on-click-right": "hyprctl kill"
     },
     
     // (2/3) Hyprland workspaces module
