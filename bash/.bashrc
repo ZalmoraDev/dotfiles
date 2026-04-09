@@ -23,7 +23,12 @@ source /usr/share/nvm/init-nvm.sh
 export TERM=xterm-256color
 export COLORTERM=truecolor
 
+export CUDA_HOME=/opt/cuda
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+
 export OLLAMA_HOST=0.0.0.0
+export OLLAMA_DEVICE=cuda
 
 ##################################################
 
