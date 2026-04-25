@@ -65,20 +65,20 @@ window#waybar {
     padding: 0px 4px;
 }
 
-#workspaces button:nth-child(n+1):nth-child(-n+3):hover {
+#workspaces button:nth-child(n+1):nth-child(-n+4):hover{
     background: rgb(50, 0, 0);
 }
 
-#workspaces button:nth-child(n+1):nth-child(-n+3) {
+#workspaces button:nth-child(n+1):nth-child(-n+4){
     border-color: rgb(150, 0, 0);
 }
 
-#workspaces button:nth-child(n+1):nth-child(-n+3).active {
+#workspaces button:nth-child(n+1):nth-child(-n+4).active{
     border-width: 0px 0px 2px 0px;
     border-color: rgb(255, 0, 0);
 }
 
-#workspaces button:nth-child(n+1):nth-child(-n+3).urgent {
+#workspaces button:nth-child(n+1):nth-child(-n+4).urgent{
     animation-name: blink;
     animation-duration: 0.4s;
     animation-timing-function: steps(12);
@@ -88,20 +88,20 @@ window#waybar {
 }
 
 
-#workspaces button:nth-child(n+4):nth-child(-n+6):hover {
+#workspaces button:nth-child(n+5):nth-child(-n+7):hover {
     background: rgb(0, 50, 0);
 }
 
-#workspaces button:nth-child(n+4):nth-child(-n+6) {
+#workspaces button:nth-child(n+5):nth-child(-n+7) {
     border-color: rgb(0, 125, 0);
 }
 
-#workspaces button:nth-child(n+4):nth-child(-n+6).active {
+#workspaces button:nth-child(n+5):nth-child(-n+7).active {
     border-width: 0px 0px 2px 0px;
     border-color: rgb(0, 255, 0);
 }
 
-#workspaces button:nth-child(n+4):nth-child(-n+6).urgent {
+#workspaces button:nth-child(n+5):nth-child(-n+7).urgent {
     animation-name: blink;
     animation-duration: 0.4s;
     animation-timing-function: steps(12);
@@ -111,20 +111,20 @@ window#waybar {
 }
 
 
-#workspaces button:nth-child(n+7):nth-child(-n+9):hover {
+#workspaces button:nth-child(n+8):nth-child(-n+10):hover {
     background: rgb(0, 45, 75);
 }
 
-#workspaces button:nth-child(n+7):nth-child(-n+9) {
+#workspaces button:nth-child(n+8):nth-child(-n+10) {
     border-color: rgb(0, 90, 150);
 }
 
-#workspaces button:nth-child(n+7):nth-child(-n+9).active {
+#workspaces button:nth-child(n+8):nth-child(-n+10).active {
     border-width: 0px 0px 2px 0px;
     border-color: rgb(0, 153, 255);
 }
 
-#workspaces button:nth-child(n+7):nth-child(-n+9).urgent0 {
+#workspaces button:nth-child(n+8):nth-child(-n+10).urgent0 {
     animation-name: blink;
     animation-duration: 0.4s;
     animation-timing-function: steps(12);

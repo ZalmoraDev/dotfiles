@@ -4,6 +4,7 @@ application/pur=PureRef-2.0.3_x64.Appimage.desktop
 
 audio/mp3=vlc.desktop
 audio/wav=vlc.desktop
+audio/ogg=vlc.desktop
 
 image/gif=org.nomacs.ImageLounge.desktop
 image/jpeg=org.nomacs.ImageLounge.desktop

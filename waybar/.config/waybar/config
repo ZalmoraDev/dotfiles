@@ -13,17 +13,13 @@
         "mpris"
     ],
     "modules-center": [
-        //"clock"
         "custom/clockblink"
-        //"hyprland/window"
     ],
     "modules-right": [
         "pulseaudio",
-        //"custom/sysstats",
         "cpu",
         "custom/gpu",
         "memory",
-        //"temperature", DID NOT TRACK WELL WITH MY LAPTOP, AS IT BOOSTS TO 100C instead of achieving 100% use
         "battery",
         "network",
         "tray"
@@ -57,12 +53,14 @@
             "enable": true,
             "update-active-window": true,
             "format": "{icon}",
-            "icon-size": 18,
+            "icon-size": 22,
             "on-click-window": "${SCRIPTS}/focus-window.sh {address} {button}"
         },
+        "all-outputs": true,
         "persistent-workspaces": {
-            "*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        }
+            "*": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        },
+        "sort-by": "name"
     },
     
     // (3/3) Media player (spotify)
@@ -88,7 +86,7 @@
     // MODULES-CENTER //
     // ---------------//
        
-    // (1/1) Custom clock module. Weekday, day of month, hour:minute
+    // (1/1) Custom blinking clock module. Weekday, day of month, hour:minute
     "custom/clockblink": {
         "exec": "~/.config/waybar/custom_modules/blinkclock.sh",
         "interval": 10,
@@ -96,12 +94,14 @@
         "format": "{text}",
         //"tooltip-format": "<big>{:%a %d-%m-%Y}</big>\n<tt><small>{calendar}</small></tt>"
     },
+
+
     
     // --------------//
     // MODULES-RIGHT //
     // --------------//
     
-    // (1/8) Pulseaudio volume control with pavucontrol on click
+    // (1/7) Pulseaudio volume control with pavucontrol on click
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-bluetooth": "{icon}  {volume}%",
@@ -119,42 +119,26 @@
         "on-click": "pavucontrol"
     },
     
-    // (2/8) CPU usage
+    // (2/7) CPU usage
     "cpu": {
         "format": " {usage}%",
         "interval": 5
     },
 
-    "custom/sysstats": {
-        "exec": "~/.config/waybar/custom_modules/sysstats.sh",
-        "interval": 5,
-        "return-type": "json",
-        "format": "{text}"
-    },
-
-    // (3/8) GPU usage (NVIDIA only, requires nvidia-smi)
+    // (3/7) GPU usage (NVIDIA only, requires nvidia-smi)
     "custom/gpu": {
         "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
         "format": "󰍹 {}%",
         "interval": 5
     },
     
-    // (4/8) Memory usage
+    // (4/7) Memory usage
     "memory": {
         "format": " {used:0.1f}G/{total:0.1f}G",
         "interval": 5
     },
     
-    // (5/8) CPU Temperature (NOT USED, peeks at 100°C because of how AMD reports temp)
-     "temperature": {
-        "interval": 1,
-        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
-        "critical-threshold": 105,
-        "format-critical": " {temperatureC}°C",
-        "format": "{temperatureC}°C"
-    },
-    
-    // (6/8) Battery status
+    // (5/7) Battery status
     "battery": {
         "states": {
             "good": 95,
@@ -168,7 +152,7 @@
         "format-icons-charging": ["󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜"]
     },
     
-    // (7/8) Network status (WiFi & Ethernet)
+    // (6/7) Network status (WiFi & Ethernet)
     "network": {
         "format-wifi": " {ifname} {signalStrength}%",
         "format-ethernet": " {ifname}",
@@ -179,7 +163,7 @@
         "on-click-right": "kitty -e bluetui"
     },
     
-    // (8/8) Tray
+    // (7/7) Tray
     "tray": {
         "spacing": 10
     },
