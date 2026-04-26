@@ -94,26 +94,32 @@ window#waybar {
     background-color: rgb(0, 153, 255);
 }
 
+#workspaces button:last-child {
+    margin: 0px;
+}
 
 
 /* ------------- */
 /* MODULE GROUPS */
 /* ------------- */
-
+#mpris,
 #pulseaudio,
 #cpu,
-#custom-gpu,
 #memory,
+#custom-gpu,
+#custom-vram,
 #battery,
 #network,
 #tray {
-    padding: 0 4px;
+    padding: 0 5px;
     color: #666666;
 }
 
+#mpris:hover,
 #pulseaudio:hover,
 #cpu:hover,
 #custom-gpu:hover,
+#custom-vram:hover,
 #memory:hover,
 #battery:hover,
 #network:hover {
@@ -130,24 +136,12 @@ window#waybar {
 #custom-power {
     font-size: 22px;
     color: #666666;
-    margin-right: -4px;
+
 }
 
 #custom-power:hover {
     color: #fff;
 }
-
-#mpris {
-    background-color: #0D0D0D;
-    color: #666666;
-    border-radius: 12px;
-    padding: 0 8px;
-}
-#mpris:hover {
-    background-color: #222222;
-    color: #ffffff;
-}
-
 
 /* ------ */
 /* CENTER */
@@ -175,8 +169,24 @@ window#waybar {
 /* ----- */
 /* RIGHT */
 
+#pulseaudio {
+    color: #a9a9a9;
+}
+
 #pulseaudio.muted {
     text-decoration: line-through;
+}
+
+#cpu, #memory {
+    color: #0f9576;
+}
+
+#custom-gpu, #custom-vram {
+    color: #a9575f;
+}
+
+#battery {
+    color: #e19658;
 }
 
 #battery.warning {
@@ -191,6 +201,10 @@ window#waybar {
     animation-timing-function: steps(12);
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+
+#network {
+    color: #6387d2;
 }
 
 #network.disconnected {

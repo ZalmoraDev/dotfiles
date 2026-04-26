@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "bottom",
     "height": 30,
-    "spacing": 4,
+    "spacing": 0,
     
     // --------------//
     // MODULE GROUPS //
@@ -18,8 +18,9 @@
     "modules-right": [
         "pulseaudio",
         "cpu",
-        "custom/gpu",
         "memory",
+        "custom/gpu",
+        "custom/vram",
         "battery",
         "network",
         "tray"
@@ -69,12 +70,8 @@
         "player": "spotify",
         "format": "⏸ {artist} - {title}",
         "format-paused": "▶ {artist} - {title}",
-        "format-stopped": "",
-        "format-disconnected": "",
-        "max-length": 60,
+        "max-length": 50,
         "tooltip": false,
-
-        "on-click": "playerctl -p spotify play-pause",
         "on-scroll-up": "playerctl -p spotify position 10+",
         "on-scroll-down": "playerctl -p spotify position 10-",
     },
@@ -120,20 +117,27 @@
     
     // (2/7) CPU usage
     "cpu": {
-        "format": " {usage}%",
+        "format": "{usage}%",
         "interval": 5
     },
 
-    // (3/7) GPU usage (NVIDIA only, requires nvidia-smi)
-    "custom/gpu": {
-        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
-        "format": "󰍹 {}%",
+    // (3/7) RAM usage
+    "memory": {
+        "format": "{used:.1f}/{total:.0f}",
         "interval": 5
     },
-    
-    // (4/7) Memory usage
-    "memory": {
-        "format": " {used:0.1f}GB",
+
+    // (4/7) GPU usage (NVIDIA only, requires nvidia-smi)
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "format": "{}%",
+        "interval": 5
+    },
+
+    // (3/7) VRAM usage
+    "custom/vram": {
+        "exec": "~/.config/waybar/custom_modules/vram.sh",
+        "format": "{}",
         "interval": 5
     },
     
@@ -144,7 +148,8 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon} {capacity}%",
+        "format": "{capacity}%",
+        //"format": "{icon} {capacity}%",
         "tooltip-format": "Health: {health} \n{timeTo}",
         "full-at": 95,
         "format-icons": ["", "", "", "", ""],
