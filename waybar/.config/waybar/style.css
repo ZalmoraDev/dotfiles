@@ -20,6 +20,12 @@ window#waybar {
     border-style: solid;
 }
 
+
+
+/* -------------- */
+/* WORKSPACE TABS */
+/* -------------- */
+
 #workspaces button {
     padding: 0 3px;
     margin: 0 3px 0 0;
@@ -30,12 +36,6 @@ window#waybar {
 #workspaces button.empty {
     min-width: 0px;
 }
-
-
-
-/* -------------- */
-/* WORKSPACE TABS */
-/* -------------- */
 
 /* Shared urgent animation properties */
 #workspaces button:nth-child(n+1):nth-child(-n+10).urgent {
@@ -51,7 +51,7 @@ window#waybar {
     border-color: rgb(150, 0, 0);
 }
 #workspaces button:nth-child(n+1):nth-child(-n+4):hover{
-    background: rgb(50, 0, 0);
+    background: rgb(100, 0, 0);
 }
 #workspaces button:nth-child(n+1):nth-child(-n+4).active{
     border-width: 0 0 2px 0;
@@ -67,7 +67,7 @@ window#waybar {
     border-color: rgb(0, 125, 0);
 }
 #workspaces button:nth-child(n+5):nth-child(-n+7):hover {
-    background: rgb(0, 50, 0);
+    background: rgb(0, 75, 0);
 }
 #workspaces button:nth-child(n+5):nth-child(-n+7).active {
     border-width: 0 0 2px 0;
@@ -84,7 +84,7 @@ window#waybar {
     border-color: rgb(0, 90, 150);
 }
 #workspaces button:nth-child(n+8):nth-child(-n+10):hover {
-    background: rgb(0, 45, 75);
+    background: rgb(0, 60, 100);
 }
 #workspaces button:nth-child(n+8):nth-child(-n+10).active {
     border-width: 0 0 2px 0;
@@ -99,9 +99,11 @@ window#waybar {
 }
 
 
+
 /* ------------- */
 /* MODULE GROUPS */
 /* ------------- */
+
 #mpris,
 #pulseaudio,
 #cpu,
@@ -112,19 +114,15 @@ window#waybar {
 #network,
 #tray {
     padding: 0 5px;
-    color: #666666;
 }
 
+#custom-power:hover,
 #mpris:hover,
-#pulseaudio:hover,
-#cpu:hover,
-#custom-gpu:hover,
-#custom-vram:hover,
-#memory:hover,
-#battery:hover,
-#network:hover {
-    color: #ffffff;
+#pulseaudio:hover {
+    color: #fff;
 }
+
+
 
 /* ------------------ */
 /* PER-MODULE CHANGES */
@@ -134,13 +132,13 @@ window#waybar {
 /* LEFT */
 
 #custom-power {
-    font-size: 22px;
-    color: #666666;
-
+    font-size: 20px;
+    color: #a9a9a9;
+    margin-left: -2px;
 }
 
-#custom-power:hover {
-    color: #fff;
+#mpris {
+    color: #a9a9a9;
 }
 
 /* ------ */
@@ -181,12 +179,24 @@ window#waybar {
     color: #0f9576;
 }
 
+#cpu:hover, #memory:hover {
+    color: #19FFC9;
+}
+
 #custom-gpu, #custom-vram {
     color: #a9575f;
 }
 
+#custom-gpu:hover, #custom-vram:hover {
+    color: #FF828F;
+}
+
 #battery {
     color: #e19658;
+}
+
+#battery:hover {
+    color: #FFA963;
 }
 
 #battery.warning {
@@ -207,6 +217,10 @@ window#waybar {
     color: #6387d2;
 }
 
+#network:hover {
+    color: #78A3FF;
+}
+
 #network.disconnected {
     color: #ffffff;
     background-color: #f53c3c;
@@ -215,9 +229,9 @@ window#waybar {
 #tray {
     margin: 8px 4px;
     border-style: solid;
-    border-width: 0 1px 0 0;
+    border-width: 0 0 0 1px;
     border-color: #3d3d3d;
-    padding: 0 8px 0 0;
+    padding: 0 0 0 8px;
 }
 
 #tray > .passive {
