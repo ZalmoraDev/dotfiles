@@ -17,11 +17,13 @@
     ],
     "modules-right": [
         "pulseaudio",
+        "battery",
         "cpu",
         "memory",
         "custom/gpu",
         "custom/vram",
-        "battery",
+        //"network#download",
+        //"network#upload",
         "network",
         "tray"
 
@@ -37,7 +39,7 @@
         //"format" : "󰣇",
 		"tooltip": false,
 		"menu": "on-click",
-		"menu-file": "$HOME/.config/waybar/custom_modules/power_menu.xml", // Menu file in resources folder
+		"menu-file": "$HOME/.config/waybar/scripts/power_menu.xml", // Menu file in resources folder
 		"menu-actions": {
 			"shutdown": "shutdown now",
 			"reboot": "reboot",
@@ -85,7 +87,7 @@
        
     // (1/1) Custom blinking clock module. Weekday, day of month, hour:minute
     "custom/clockblink": {
-        "exec": "~/.config/waybar/custom_modules/blinkclock.sh",
+        "exec": "~/.config/waybar/scripts/blinkclock.sh",
         "interval": 10,
         "return-type": "json",
         "format": "{text}",
@@ -98,12 +100,10 @@
     // MODULES-RIGHT //
     // --------------//
     
-    // (1/7) Pulseaudio volume control with pavucontrol on click
+    // (1/10) Pulseaudio volume control with pavucontrol on click
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-bluetooth": "{icon}  {volume}%",
-        "format-bluetooth-muted": "  {volume}%",
-        "format-muted": "{volume}%",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -111,38 +111,11 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
     },
-    
-    // (2/7) CPU usage
-    "cpu": {
-        "format": "{usage}%",
-        "interval": 5
-    },
 
-    // (3/7) RAM usage
-    "memory": {
-        "format": "{used:.1f}/{total:.0f}",
-        "interval": 5
-    },
-
-    // (4/7) GPU usage (NVIDIA only, requires nvidia-smi)
-    "custom/gpu": {
-        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
-        "format": "{}%",
-        "interval": 5
-    },
-
-    // (3/7) VRAM usage
-    "custom/vram": {
-        "exec": "~/.config/waybar/custom_modules/vram.sh",
-        "format": "{}",
-        "interval": 5
-    },
-    
-    // (5/7) Battery status
+    // (2/10) Battery status
     "battery": {
         "states": {
             "good": 95,
@@ -150,25 +123,67 @@
             "critical": 15
         },
         "format": "{capacity}%",
-        //"format": "{icon} {capacity}%",
         "tooltip-format": "Health: {health} \n{timeTo}",
         "full-at": 95,
         "format-icons": ["", "", "", "", ""],
         "format-icons-charging": ["󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜", "󰢜"]
     },
-    
-    // (6/7) Network status (WiFi & Ethernet)
+
+
+    // (3/10) CPU usage
+    "cpu": {
+        "format": "{usage}%",
+        "interval": 5
+    },
+
+    // (4/10) RAM usage
+    "memory": {
+        "format": "{used:.1f}/{total:.0f}",
+        "interval": 5
+    },
+
+
+    // (5/10) GPU usage (NVIDIA only, requires nvidia-smi)
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "format": "{}%",
+        "interval": 5
+    },
+
+    // (6/10) VRAM usage
+    "custom/vram": {
+        "exec": "~/.config/waybar/scripts/vram.sh",
+        "format": "{}",
+        "interval": 5
+    },
+
+
+    // (7/10) Network Download speed
+    "network#download": {
+        "interval": 2,
+        "format": "{bandwidthDownBits}",
+        "tooltip": false
+    },
+
+    // (8/10) Network Upload speed
+    "network#upload": {
+        "interval": 2,
+        "format": "{bandwidthUpBits}",
+        "tooltip": false
+    },
+
+    // (9/10) Network status (WiFi & Ethernet)
     "network": {
         "format-wifi": " {ifname} {signalStrength}%",
-        "format-ethernet": " {ifname}",
+        "format-ethernet": " ",
         "tooltip-format": " {ifname} via {gwaddr}",
-        "format-linked": "󰈀{ifname} (No IP) ",
-        "format-disconnected": " Offline",
+        "format-linked": "󰈀 (No IP) ",
+        "format-disconnected": " ",
         "on-click": "kitty -e nmtui",
         "on-click-right": "kitty -e bluetui"
     },
-    
-    // (7/7) Tray
+
+    // (10/10) Tray
     "tray": {
         "spacing": 10
     },
