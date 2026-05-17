@@ -111,7 +111,7 @@ decoration {
 
     # https://wiki.hypr.land/Configuring/Variables/#blur
     blur {
-        enabled = true
+A7;6u       enabled = true
         size = 2
         passes = 1
 
@@ -126,6 +126,7 @@ windowrule = border_size 1, rounding 12, match:workspace f[1]
 
 # See https://wiki.hypr.land/Configuring/Dwindle-Layout/ for more
 dwindle {
+    pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
     preserve_split = true # You probably want this
 }
 
@@ -244,6 +245,7 @@ bind = $mainMod, Y, exec, libreoffice /home/sv/documents/reading/jb-refererencec
 # Window behavior
 bind = $mainMod, A, togglefloating,
 bind = $mainMod, S, pseudo, # dwindle
+bind = $mainMod, D, togglesplit, # dwindle
 
 
 # Application life
