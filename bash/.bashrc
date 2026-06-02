@@ -88,3 +88,4 @@ alias llm-clean='sudo rm -rf /home/sv/code/containers/llm/open-webui/uploads/* /
 
 # ssh
 alias ssh-vps='ssh -i $SECRET_VPS_KEY root@$SECRET_VPS_IP'
+export PATH="$HOME/.local/bin:$PATH"
