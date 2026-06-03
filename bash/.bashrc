@@ -44,7 +44,6 @@ alias la='ls -a'
 alias ll='ls -l'
 alias l='ls'
 
-# nano
 alias grep='grep --color=auto'
 alias nano='nano -ET4 -i'
 
@@ -52,7 +51,7 @@ alias nano='nano -ET4 -i'
 alias gita='git add .'
 alias gitc='git commit -m' # message to be inserted by user
 alias gitp='git push origin'
-alias git-authors='git fame --cost hour -wMC --format svg --min 1 > docs/authors.svg'
+alias gitf='git fame --cost hour -wMC --format svg --min 1 > docs/authors.svg'
 
 # docker / podman
 # I can't be bothered
@@ -88,4 +87,3 @@ alias llm-clean='sudo rm -rf /home/sv/code/containers/llm/open-webui/uploads/* /
 
 # ssh
 alias ssh-vps='ssh -i $SECRET_VPS_KEY root@$SECRET_VPS_IP'
-export PATH="$HOME/.local/bin:$PATH"
