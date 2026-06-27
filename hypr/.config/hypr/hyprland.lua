@@ -328,6 +328,12 @@ hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "
 hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
 
 hl.config({
+    xwayland = {
+        force_zero_scaling = true
+    }
+})
+
+hl.config({
     dwindle = {
         preserve_split = true
     }
@@ -357,12 +363,6 @@ hl.config({
 -----------------------------
 
 -- TODO: Should all be checked
-
---xwayland {
---    # Force x11-to-Wayland apps to render without rescaling (laptop 1.25x)
---force_zero_scaling = true
---}
---
 --# Ignore maximize requests from apps.
 --windowrule = suppress_event maximize, match:class .*
 --
