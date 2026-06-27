@@ -189,7 +189,7 @@ hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("/home/sv/dotfiles/hypr/.config/h
 
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -o ~/images/screenshots/$(date +%Y-%m)")) -- Screenshot screen
 hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region -o ~/images/screenshots/$(date +%Y-%m)")) -- Screenshots region
-hl.bind("CTRL + SLASH", hl.dsp.exec_cmd("hyprshot -m window -o ~/images/screenshots/$(date +%Y-%m)")) -- Screenshots window
+hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("hyprshot -m window -o ~/images/screenshots/$(date +%Y-%m)")) -- Screenshots window
 
 -- Move focus
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
