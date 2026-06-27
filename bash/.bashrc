@@ -19,6 +19,8 @@ source /usr/share/nvm/init-nvm.sh
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+export QT_QPA_PLATFORMTHEME=qt6ct
+
 # export WOFI_CONFIG=/home/sv/.config/wofi/config
 export TERM=xterm-256color
 export COLORTERM=truecolor
@@ -63,13 +65,13 @@ alias dcdv='docker compose down -v'
 # Starts/Stops: [Ollama, Docker] open-webui, SearXNG & Kokoro-FastAPI (TTS)
 llm() {
   case "$1" in
-    start-max)
-      sudo systemctl start ollama docker || return
+    start)
+      nohup ollama serve &
       docker compose -p llm start
       ;;
-    stop-max)
-      docker compose -p llm stop || return
-      sudo systemctl stop docker ollama
+    stop)
+      docker compose -p llm stop &
+      pkill ollama
       ;;
     start-min)
       docker compose -p llm start
@@ -78,7 +80,7 @@ llm() {
       docker compose -p llm stop
       ;;
     *)
-      echo "Usage: llm {start-max|stop-max|start-min|stop-min}"
+      echo "Usage: llm { start | stop | start-min | stop-min}"
       ;;
   esac
 }
