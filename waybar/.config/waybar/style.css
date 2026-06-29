@@ -22,7 +22,8 @@
 }
 
 window#waybar {
-    background-color: #181818;
+    /*background-color: #181818;*/
+    background-color: #000;
     color: #fff;
     border-style: solid;
 }

@@ -22,7 +22,7 @@ hl.env("GDK_BACKEND", "wayland,x11,*") -- GTK
 
 hl.env("QT_QPA_PLATFORM", "wayland;xcb") -- QT
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
-hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1") -- TODO: autoscaling, is this needed?
+hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "0") -- TODO: autoscaling, is this needed?
 hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
 
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
@@ -45,10 +45,11 @@ hl.env("LIBVA_DRIVER_NAME", "nvidia")
 
 hl.monitor({
     output   = "eDP-1",
-    mode     = "2560x1600@165",
+    mode     = "2560x1600@165.01900",
     position = "0x1440",
     scale    = "1.25",
-    bitdepth = 10
+    cm       = "srgb",
+    bitdepth = 8
 })
 hl.workspace_rule({ workspace = "1", monitor = "eDP-1", default = true })
 hl.workspace_rule({ workspace = "2", monitor = "eDP-1", default = true })
@@ -56,10 +57,11 @@ hl.workspace_rule({ workspace = "3", monitor = "eDP-1", default = true })
 
 hl.monitor({
     output   = "HDMI-A-1",
-    mode     = "2560x1440@144",
+    mode     = "2560x1440@143.93300",
     position = "0x0",
     scale    = "1",
-    bitdepth = 10
+    cm       = "srgb",
+    bitdepth = 8
 })
 hl.workspace_rule({ workspace = "4", monitor = "HDMI-A-1", default = true })
 hl.workspace_rule({ workspace = "5", monitor = "HDMI-A-1", default = true })
@@ -67,10 +69,11 @@ hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-1", default = true })
 
 hl.monitor({
     output    = "DP-2",
-    mode      = "1920x1080@60",
+    mode      = "1920x1080@60.00000",
     position  = "2560x0",
     scale     = "1",
-    bitdepth  = 10,
+    cm        = "srgb",
+    bitdepth  = 8,
     transform = 3 -- Right is up, Left is down
 })
 hl.workspace_rule({ workspace = "7", monitor = "DP-2", default = true })
@@ -88,9 +91,11 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme \"prefer-dark\"") -- TODO: Still needed?
 
     hl.exec_cmd("waybar & hyprpaper & hypridle & hyprshot & hyprsunset")
-    hl.exec_cmd("swaync") -- TODO: Still needed?
+    hl.exec_cmd("swaync") -- Notification Daemon
     hl.exec_cmd("wl-paste --watch cliphist store") -- Save Wayland clipboard entries to cliphist
     hl.exec_cmd("kwalletd6") -- TODO: Still needed? was for Brave not remembering logins/cookies/sessions
+
+    hl.exec_cmd("anki")
 end)
 
 
@@ -184,7 +189,7 @@ hl.bind(mainMod .. " + BACKSLASH", hl.dsp.exec_cmd("libreoffice /home/sv/documen
 -- Special --
 -- ----------
 hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mainMod .. " + SUPER_L", hl.dsp.exec_cmd("rofi -show drun -show-icons"))
+hl.bind(mainMod .. " + SUPER_L", hl.dsp.exec_cmd("pkill rofi || rofi -show drun -show-icons"), { release = true }) -- open on first, closes on second
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("/home/sv/dotfiles/hypr/.config/hypr/scripts/pinnedMenu.sh"))
 
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -o ~/images/screenshots/$(date +%Y-%m)")) -- Screenshot screen
@@ -223,7 +228,6 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 ---------------
 ---- INPUT ----
 ---------------
-
 hl.config({
     input = {
         kb_layout  = "us",
@@ -248,8 +252,6 @@ hl.gesture({
     action = "workspace"
 })
 
--- TODO: Explore further
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
 hl.device({
     name      = "wacom-intuos-s-pen",
     output    = "current",
@@ -260,7 +262,6 @@ hl.device({
 -----------------------
 ---- LOOK AND FEEL ----
 -----------------------
-
 hl.config({
     general = {
         gaps_in  = 0,
@@ -268,14 +269,16 @@ hl.config({
         border_size = 1,
 
         col = {
-            active_border   = "rgb(888888)", -- Lightgray
-            -- active_border   = "rgb(FFAA00)", -- Blender Orange
+            active_border   = "rgb(000000)", -- Black
+            --active_border   = "rgb(888888)", -- Lightgray
+            --active_border   = "rgb(FFAA00)", -- Blender Orange
 
+            inactive_border = "rgb(000000)",   -- Black
             --inactive_border = "rgb(3A3A3A)", -- Gray
-            inactive_border = "rgb(181818)", -- Darkgray
+            --inactive_border = "rgb(181818)", -- Darkgray
         },
 
-        layout = "dwindle",
+        layout = "dwindle"
     },
 
     decoration = {
@@ -330,55 +333,68 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "
 hl.config({
     xwayland = {
         force_zero_scaling = true
-    }
-})
-
-hl.config({
+    },
     dwindle = {
         preserve_split = true
-    }
-})
-
-hl.config({
+    },
     master = {
         new_status = "master"
-    }
-})
-
-hl.config({
+    },
     scrolling = {
         fullscreen_on_one_column = true
-    }
-})
-
-hl.config({
+    },
     misc = {
         force_default_wallpaper = 0,
         disable_hyprland_logo   = true
-    },
+    }
 })
 
 -----------------------------
 ---- CUSTOM APP BEHAVIOR ----
 -----------------------------
 
--- TODO: Should all be checked
---# Ignore maximize requests from apps.
---windowrule = suppress_event maximize, match:class .*
---
---# Fix some dragging issues with XWayland
---windowrule = no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0
---
---# Jetbrains IDE's | Snapping issue: https://github.com/hyprwm/Hyprland/issues/4257#issuecomment-2759517981
---# fix tooltips & tab dragging
---windowrule = no_initial_focus on, no_focus on, match:class ^(.*jetbrains.*)$, match:title ^(win.*)$
---windowrule = no_initial_focus on, no_focus on, match:class ^(.*jetbrains.*)$, match:title ^\\s$
---
---# Affinity (wine) | Window creation issue
---# fix tooltips & tab dragging
---windowrule = no_initial_focus on, no_focus on, match:class ^(.*affinity\.exe.*)$, match:title ^(win.*)$
---windowrule = no_initial_focus on, no_focus on, match:class ^(.*affinity\.exe.*)$, match:title ^\\s$
---
---# See through image application to trace them
---#windowrule = float on, opacity 0.5 1, match:class org.nomacs.ImageLounge
---#windowrule = float on, opacity 0.5 1, match:class gimp
+local suppressMaximizeRule = hl.window_rule({
+    -- Ignore maximize requests from all apps. You'll probably like this.
+    name  = "suppress-maximize-events",
+    match = { class = ".*" },
+
+    suppress_event = "maximize"
+})
+suppressMaximizeRule:set_enabled(false)
+
+hl.window_rule({
+    -- Fix some dragging issues with XWayland
+    name  = "fix-xwayland-drags",
+    match = {
+        class      = "^$",
+        title      = "^$",
+        xwayland   = true,
+        float      = true,
+        fullscreen = false,
+        pin        = false,
+    },
+
+    no_focus = true
+})
+
+-- Hyprland-run windowrule
+hl.window_rule({
+    name  = "move-hyprland-run",
+    match = { class = "hyprland-run" },
+
+    move  = "20 monitor_h-120",
+    float = true
+})
+
+--[[
+-- Affinity (wine) | Window creation issue
+-- fix tooltips & tab dragging
+windowrule = no_initial_focus on, no_focus on, match:class ^(.*affinity\.exe.*)$, match:title ^(win.*)$
+windowrule = no_initial_focus on, no_focus on, match:class ^(.*affinity\.exe.*)$, match:title ^\\s$
+]]
+
+--[[
+-- See through image application to trace them
+windowrule = float on, opacity 0.5 1, match:class org.nomacs.ImageLounge
+windowrule = float on, opacity 0.5 1, match:class gimp
+]]
