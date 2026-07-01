@@ -192,6 +192,7 @@ hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + SUPER_L", hl.dsp.exec_cmd("pkill rofi || rofi -show drun -show-icons"), { release = true }) -- open on first, closes on second
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("/home/sv/dotfiles/hypr/.config/hypr/scripts/pinnedMenu.sh"))
 
+-- Screenshot
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -o ~/images/screenshots/$(date +%Y-%m)")) -- Screenshot screen
 hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region -o ~/images/screenshots/$(date +%Y-%m)")) -- Screenshots region
 hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("hyprshot -m window -o ~/images/screenshots/$(date +%Y-%m)")) -- Screenshots window
