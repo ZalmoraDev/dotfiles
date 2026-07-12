@@ -95,7 +95,11 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("wl-paste --watch cliphist store") -- Save Wayland clipboard entries to cliphist
     hl.exec_cmd("kwalletd6") -- TODO: Still needed? was for Brave not remembering logins/cookies/sessions
 
-    hl.exec_cmd("anki")
+
+    hl.exec_cmd("anki", { workspace = "4 silent" })
+
+    hl.exec_cmd("brave", { workspace = "7 silent" })
+    hl.exec_cmd("spotify", { workspace = "9 silent" })
 end)
 
 
@@ -127,7 +131,7 @@ hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + G", hl.dsp.window.pseudo()) -- dwindle, float in center
 
 hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("arecord -f cd -t wav /tmp/stt_recording.wav"))
-hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("bash ~/.config/hypr/scripts/stt.sh"), { release = true })
+hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("bash $HOME/.config/hypr/scripts/stt.sh"), { release = true })
 
 -- ---------------------------
 -- Bottom row | OS behavior --
@@ -176,26 +180,26 @@ end
 -- -------------------------------
 -- Rightmost | Common documents --
 -- -------------------------------
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("okular /home/sv/documents/reading/lpic-1.pdf"))
-hl.bind(mainMod .. " + MINUS", hl.dsp.exec_cmd("okular -p 634  /home/sv/documents/reading/lpic-1.pdf")) -- Review question answers
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("okular $HOME/documents/reading/lpic-1.pdf"))
+hl.bind(mainMod .. " + MINUS", hl.dsp.exec_cmd("okular -p 634  $HOME/documents/reading/lpic-1.pdf")) -- Review question answers
 
 hl.bind(mainMod .. " + SEMICOLON", hl.dsp.exec_cmd(""))
 hl.bind(mainMod .. " + APOSTROPHE", hl.dsp.exec_cmd(""))
 
 hl.bind(mainMod .. " + SLASH", hl.dsp.exec_cmd(""))
-hl.bind(mainMod .. " + BACKSLASH", hl.dsp.exec_cmd("libreoffice /home/sv/documents/reading/jb-refererencecard.odg"))
+hl.bind(mainMod .. " + BACKSLASH", hl.dsp.exec_cmd("libreoffice $HOME/documents/reading/jb-refererencecard.odg"))
 
 -- ----------
 -- Special --
 -- ----------
 hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + SUPER_L", hl.dsp.exec_cmd("pkill rofi || rofi -show drun -show-icons"), { release = true }) -- open on first, closes on second
-hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("/home/sv/dotfiles/hypr/.config/hypr/scripts/pinnedMenu.sh"))
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/pinnedMenu.sh"))
 
 -- Screenshot
-hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -o ~/images/screenshots/$(date +%Y-%m)")) -- Screenshot screen
-hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region -o ~/images/screenshots/$(date +%Y-%m)")) -- Screenshots region
-hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("hyprshot -m window -o ~/images/screenshots/$(date +%Y-%m)")) -- Screenshots window
+hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -o $HOME/images/screenshots/$(date +%Y-%m)")) -- Screenshot screen
+hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region -o $HOME/images/screenshots/$(date +%Y-%m)")) -- Screenshots region
+hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("hyprshot -m window -o $HOME/images/screenshots/$(date +%Y-%m)")) -- Screenshots window
 
 -- Move focus
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
@@ -267,17 +271,7 @@ hl.config({
     general = {
         gaps_in  = 0,
         gaps_out = 0,
-        border_size = 1,
-
-        col = {
-            active_border   = "rgb(000000)", -- Black
-            --active_border   = "rgb(888888)", -- Lightgray
-            --active_border   = "rgb(FFAA00)", -- Blender Orange
-
-            inactive_border = "rgb(000000)",   -- Black
-            --inactive_border = "rgb(3A3A3A)", -- Gray
-            --inactive_border = "rgb(181818)", -- Darkgray
-        },
+        border_size = 0,
 
         layout = "dwindle"
     },
@@ -291,16 +285,28 @@ hl.config({
             size      = 2,
             passes    = 1,
             vibrancy  = 0.1696,
+        },
+
+        shadow = {
+            enabled        = false,
+            range          = 2,
+            render_power   = 2,
+            sharp          = false,
+            color          = "rgba(FFFFFF0F)",
+            color_inactive = "rgba(000000FF)",
+            offset         = {0,0},
+            scale          = 1.0
+        },
+
+        glow = {
+            enabled = true,
+            range = 2;
+            color = "rgba(FFFFFF88)";
         }
     },
 
-    -- TODO: Convert to .lua from deprecated hyprland format
-    -- CUSTOM Apply rounding to solo windows, be it: fullscreen, floating or pseudo
-    -- windowrule = border_size 1, rounding 12, match:workspace w[1]
-    -- windowrule = border_size 1, rounding 12, match:workspace f[1]
-
     animations = {
-        enabled = true,
+        enabled = true
     }
 })
 
@@ -376,15 +382,6 @@ hl.window_rule({
     },
 
     no_focus = true
-})
-
--- Hyprland-run windowrule
-hl.window_rule({
-    name  = "move-hyprland-run",
-    match = { class = "hyprland-run" },
-
-    move  = "20 monitor_h-120",
-    float = true
 })
 
 --[[

@@ -3,7 +3,7 @@
 /* ------- */
 @keyframes blink {
     to {
-        background-color: #181818;
+        background-color: #000000;
         color: #ffffff;
     }
 }
@@ -171,7 +171,7 @@ window#waybar {
     animation-timing-function: steps(12);
     animation-iteration-count: 8;
     animation-direction: alternate;
-    background-color: #181818;
+    background-color: #000000;
 }
 
 #custom-clockblink {

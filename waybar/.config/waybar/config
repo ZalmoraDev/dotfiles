@@ -86,7 +86,7 @@
        
     // (1/1) Custom blinking clock module. Weekday, day of month, hour:minute
     "custom/clockblink": {
-        "exec": "~/.config/waybar/scripts/blinkclock.sh",
+        "exec": "$HOME/.config/waybar/scripts/blinkclock.sh",
         "interval": 10,
         "return-type": "json",
         "format": "{text}",
@@ -151,7 +151,7 @@
 
     // (6/10) VRAM usage
     "custom/vram": {
-        "exec": "~/.config/waybar/scripts/vram.sh",
+        "exec": "$HOME/.config/waybar/scripts/vram.sh",
         "format": "{}",
         "interval": 5
     },

@@ -66,11 +66,13 @@ alias dcdv='docker compose down -v'
 llm() {
   case "$1" in
     start)
-      nohup ollama serve &
+      sudo systemctl start docker
       docker compose -p llm start
+      nohup ollama serve &
       ;;
     stop)
-      docker compose -p llm stop &
+      docker compose -p llm stop
+      sudo systemctl stop docker
       pkill ollama
       ;;
     start-min)
@@ -85,7 +87,7 @@ llm() {
   esac
 }
 
-alias llm-clean='sudo rm -rf /home/sv/code/containers/llm/open-webui/uploads/* /home/sv/code/containers/llm/open-webui/cache/audio/speech/*'
+alias llm-clean='sudo rm -rf $HOME/code/containers/llm/open-webui/uploads/* $HOME/code/containers/llm/open-webui/cache/audio/speech/*'
 
 # ssh
 alias ssh-vps='ssh -i $SECRET_VPS_KEY root@$SECRET_VPS_IP'
