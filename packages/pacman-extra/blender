@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# 3D modeling application
+sudo pacman -S --noconfirm --needed blender

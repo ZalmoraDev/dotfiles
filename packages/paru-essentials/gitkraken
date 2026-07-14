@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Git GUI
+sudo pacman -S --noconfirm --needed gitkraken

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Audio recording & manipulation tool
+sudo pacman -S --noconfirm --needed audacity
