@@ -55,6 +55,7 @@ alias nano='nano -ET4 -i'
 alias gita='git add .'
 alias gitc='git commit -m' # message to be inserted by user
 alias gitp='git push origin'
+alias gits='git status'
 alias gitf='git fame --cost hour -wMC --format svg --min 1 > docs/authors.svg'
 
 # docker / podman
