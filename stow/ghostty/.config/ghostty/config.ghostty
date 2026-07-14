@@ -1,0 +1,17 @@
+confirm-close-surface = false
+
+# Font
+font-size = 11
+font-family = JetBrainsMonoNL Nerd Font Mono
+font-family = NotoColorEmoji
+
+# Look & Feel
+#theme = Monokai Remastered
+theme = Vercel
+
+background = 000000
+background-opacity = 0.4
+foreground = ffffff
+
+# Keybinds
+keybind = ctrl+enter=unbind

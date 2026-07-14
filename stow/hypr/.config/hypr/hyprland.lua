@@ -113,7 +113,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 -- ------------------------
 -- Top row | Common apps --
 -- ------------------------
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("kitty"))
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("ghostty"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("brave"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("dolphin"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("anki"))

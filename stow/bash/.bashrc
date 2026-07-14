@@ -21,6 +21,8 @@ source /usr/share/nvm/init-nvm.sh
 
 export QT_QPA_PLATFORMTHEME=qt6ct
 
+export XDG_CONFIG_HOME=$HOME/.config
+
 # export WOFI_CONFIG=/home/sv/.config/wofi/config
 export TERM=xterm-256color
 export COLORTERM=truecolor
