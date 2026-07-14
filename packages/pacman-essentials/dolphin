@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# KDE File Manager
+sudo pacman -S --noconfirm --needed dolphin

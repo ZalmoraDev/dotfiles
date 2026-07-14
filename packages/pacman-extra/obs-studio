@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Video recording & Live streaming
+sudo pacman -S --noconfirm --needed obs-studio

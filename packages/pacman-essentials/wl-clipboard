@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Copy/Paste utils
+sudo pacman -S --noconfirm --needed wl-clipboard

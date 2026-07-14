@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Application launcher
+sudo pacman -S --noconfirm --needed rofi rofi-emoji

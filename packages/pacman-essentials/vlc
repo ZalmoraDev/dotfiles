@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Multimedia player
+sudo pacman -S --noconfirm --needed vlc

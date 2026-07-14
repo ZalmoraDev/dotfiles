@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Lightweight & fast Image viewer
+# reason: it does not dither edges, so pixels are preserved opposed to blurred
+sudo paru -S --noconfirm --needed nomacs

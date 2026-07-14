@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Display and control your Android device (Used for remote phone display & control)
+sudo pacman -S --noconfirm --needed scrcpy

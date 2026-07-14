@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Automatic retopology tool for 3D models
+sudo paru -S --noconfirm --needed instant-meshes-git

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Needed for the `arecord` voice recording command
+# Used by whisper.cpp for reading audio recordings
+# in order to create Speach-to-Text (STT) text
+sudo pacman -S --noconfirm --needed alsa-utils

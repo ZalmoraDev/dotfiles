@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Privacy focused Firefox-based Web Browser
+sudo paru -S --noconfirm --needed zen-browser-bin

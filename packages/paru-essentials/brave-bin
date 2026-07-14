@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Privacy focused Chromium Web Browser
+sudo paru -S --noconfirm --needed brave-bin

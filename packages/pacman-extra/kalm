@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# KDE Breathing Technique follow-along
+sudo pacman -S --noconfirm --needed kalm

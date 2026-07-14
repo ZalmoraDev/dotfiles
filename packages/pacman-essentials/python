@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Python programming language
+sudo pacman -S --noconfirm --needed python

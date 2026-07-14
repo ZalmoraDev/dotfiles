@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Tiling Window Manager suite
+sudo pacman -S --noconfirm --needed hypr{land,idle,lock,paper,shot,sunset}

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Proton VPN
+sudo pacman -S --noconfirm --needed proton-vpn-cli

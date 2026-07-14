@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# x86 virtualization
+sudo pacman -S --noconfirm --needed virtualbox

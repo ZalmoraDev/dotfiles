@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Markdown based personal knowledge base & note-taking app
+sudo pacman -S --noconfirm --needed obsidian

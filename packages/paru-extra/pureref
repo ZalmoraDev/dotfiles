@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Reference board app
+sudo paru -S --noconfirm --needed pureref

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Music streaming app
+sudo paru -S --noconfirm --needed spotify

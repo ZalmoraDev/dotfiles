@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# White noise app
+sudo pacman -S --noconfirm --needed blanket

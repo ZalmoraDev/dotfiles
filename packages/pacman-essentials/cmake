@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# c/c++ project buildsystem
+sudo pacman -S --noconfirm --needed cmake

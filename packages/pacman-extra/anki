@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Spaced repetition flashcard app
+sudo pacman -S --noconfirm --needed anki

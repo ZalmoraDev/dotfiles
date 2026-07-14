@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Process monitoring CLI app
+sudo pacman -S --noconfirm btop

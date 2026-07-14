@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Office productivity software suite 
+sudo pacman -S --noconfirm --needed libreoffice-fresh

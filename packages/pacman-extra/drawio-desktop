@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# UML/ERD graph drawing app
+sudo pacman -S --noconfirm --needed drawio-desktop

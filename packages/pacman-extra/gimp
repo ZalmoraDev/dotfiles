@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# GNU Image Manipulation Program
+sudo pacman -S --noconfirm --needed gimp

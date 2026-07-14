@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# voice and text chat for gamers
+sudo pacman -S --noconfirm --needed discord

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Jetbrains IDE's
+sudo paru -S --noconfirm --needed clion webstorm phpstorm

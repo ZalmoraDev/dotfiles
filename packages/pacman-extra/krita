@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# KDE Painting program
+sudo pacman -S --noconfirm --needed krita

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Modern Zig terminal emulator
+sudo pacman -S --noconfirm --needed ghostty

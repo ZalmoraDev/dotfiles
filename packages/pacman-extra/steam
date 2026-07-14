@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Distribution platform for PC games
+sudo pacman -S --noconfirm --needed steam

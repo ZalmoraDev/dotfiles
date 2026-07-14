@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# KDE Lightweight GUI Text Editor
+sudo pacman -S --noconfirm --needed kate

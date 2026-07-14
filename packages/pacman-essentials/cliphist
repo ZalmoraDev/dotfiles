@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Clipboard history manager
+sudo pacman -S --noconfirm --needed cliphist

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Terminal Multiplexer
+sudo pacman -S --noconfirm --needed tmux

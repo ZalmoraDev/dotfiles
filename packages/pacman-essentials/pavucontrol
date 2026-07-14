@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# PulseAudio Volume Control
+sudo pacman -S --noconfirm --needed pavucontrol

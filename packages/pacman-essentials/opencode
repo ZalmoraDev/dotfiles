@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Open Source local AI coding agent
+sudo pacman -S --noconfirm --needed opencode

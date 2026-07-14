@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# VSCode fork for Agentic development from Google
+sudo paru -S --noconfirm --needed antigravity-ide

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Batch image-converter and resizer
+sudo paru -S --noconfirm --needed xnconvert

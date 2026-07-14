@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# KDE Calculator
+sudo pacman -S --noconfirm --needed kcalc

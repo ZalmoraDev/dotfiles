@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# KDE Visual disk usage app
+sudo pacman -S --noconfirm --needed filelight

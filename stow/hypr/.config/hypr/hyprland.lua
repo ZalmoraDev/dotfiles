@@ -148,7 +148,7 @@ hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("cliphist wipe")) -- Wipe cli
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -USR1 waybar")) -- Toggle Waybar
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("pkill -USR2 waybar; pkill hyprpaper; hyprpaper &")) -- Reload Waybar & Hyprpaper
 
-hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("rofi -show emoji -modi emoji"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("rofi -show emoji -modi emoji"))
 
 -- -----------------------------------------------------------
 -- Right side: Number row, Right hand & Numpad | Workspaces --

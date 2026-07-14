@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# API Client & Design Platform for GraphQL & REST (Privacy focused Insomnia fork)
+sudo paru -S --noconfirm --needed insomnium-bin

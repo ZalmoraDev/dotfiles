@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# KDE PDF Viewer
+sudo pacman -S --noconfirm --needed okular

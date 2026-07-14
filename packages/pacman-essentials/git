@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Version Control System
+sudo pacman -S --noconfirm --needed git

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Wayland taskbar
+sudo pacman -S --noconfirm --needed waybar

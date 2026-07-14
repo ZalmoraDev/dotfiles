@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# CLI Text Editor
+sudo pacman -S --noconfirm --needed vim

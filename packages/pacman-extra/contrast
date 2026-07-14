@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# WCAG color contrast requirement comparison app
+sudo pacman -S --noconfirm --needed contrast

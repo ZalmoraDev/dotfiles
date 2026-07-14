@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Notification Manager
+sudo pacman -S --noconfirm --needed swaync

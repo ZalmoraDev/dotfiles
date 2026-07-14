@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Video editing software suite
+sudo paru -S --noconfirm --needed davinci-resolve
