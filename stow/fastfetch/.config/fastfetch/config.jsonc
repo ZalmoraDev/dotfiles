@@ -1,0 +1,115 @@
+{
+  "display": {
+    "separator": " "
+  },
+  "modules": [
+    {
+      "type": "os",
+      "key": "󰻀 OS",
+      "keyColor": "red"
+    },
+    {
+      "type": "kernel",
+      "key": "├ Kernel ",
+      "keyColor": "red"
+    },
+    {
+      "type": "packages",
+      "key": "├󰏖 Packs  ",
+      "keyColor": "red"
+    },
+    {
+      "type": "terminal",
+      "key": "├󰍛 Term   ",
+      "keyColor": "red"
+    },
+    {
+      "type": "shell",
+      "key": "└ Shell  ",
+      "keyColor": "red"
+    },
+    "break",
+
+
+    {
+      "type": "wm",
+      "key": " WM",
+      "keyColor": "light_green"
+    },
+    {
+      "type": "LM",
+      "key": "├ LM     ",
+      "keyColor": "light_green"
+    },
+    {
+      "type": "Theme",
+      "key": "├󰉼 Theme  ",
+      "keyColor": "light_green"
+    },
+    {
+      "type": "Icons",
+      "key": "├󰋩 Icons  ",
+      "keyColor": "light_green"
+    },
+    {
+      "type": "Cursor",
+      "key": "├󰇀 Cursor ",
+      "keyColor": "light_green"
+    },
+    {
+      "type": "Font",
+      "key": "└ Fonts  ",
+      "keyColor": "light_green"
+    },
+    "break",
+
+
+    {
+      "type": "Host",
+      "format": "{family}",
+      "key": " PC",
+      "keyColor": "light_blue"
+    },
+    {
+      "type": "Display",
+      "key": "├󰍹 Display",
+      "keyColor": "light_blue"
+    },
+    {
+      "type": "Disk",
+      "key": "├ Disk   ",
+      "keyColor": "light_blue"
+    },
+    {
+      "type": "CPU",
+      "key": "├ CPU    ",
+      "showPeCoreCount": true,
+      "keyColor": "light_blue"
+    },
+    {
+      "type": "Memory",
+      "key": "├ RAM      ",
+      "keyColor": "light_blue"
+    },
+    {
+      "type": "GPU",
+      "driverSpecific": true,
+      "format": "{name} ({core-count}) @ {frequency}",
+      "key": "├󰍛 GPU    ",
+      "keyColor": "light_blue"
+    },    
+    {
+      "type": "GPU",
+      "driverSpecific": true,
+      "format": "{dedicated-used} / {dedicated-total} ({dedicated-percentage-num})",
+      "key": "└ VRAM     ",
+      "keyColor": "light_blue"
+    },
+    "break",
+
+    
+    {
+      "type": "colors"
+    }
+  ]
+}
