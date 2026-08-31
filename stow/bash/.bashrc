@@ -1,7 +1,5 @@
 # ~/.bashrc
 
-PS1='[\u@\h \W]\$ '
-
 # load .gitignore'd secrets
 secrets="$HOME/dotfiles/.secrets"
 if [ -f "$secrets" ]; then
@@ -35,21 +33,15 @@ export OLLAMA_HOST=0.0.0.0
 export OLLAMA_DEVICE=cuda
 
 ##################################################
-
 # general
-# Rename to all lowercase with hyphens for spaces/underscores
-re2linform() {
-    perl-rename 'y/A-Z/a-z/; s/[ _]+/-/g; s/-+/-/g' "$@"
-}
+alias grep='grep --color=auto'
+alias nano='nano -ET4 -i'
 
 # ls
 alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -l'
 alias l='ls'
-
-alias grep='grep --color=auto'
-alias nano='nano -ET4 -i'
 
 # git
 alias gita='git add .'
@@ -58,39 +50,14 @@ alias gitp='git push origin'
 alias gits='git status'
 alias gitf='git fame --cost hour -wMC --format svg --min 1 > docs/authors.svg'
 
-# docker / podman
-# I can't be bothered
+# docker
 alias docker-nuke='docker container prune -f; docker image prune -af; docker volume prune -f; docker network prune -f'
 alias dcu='docker compose up'
 alias dcd='docker compose down'
 alias dcdv='docker compose down -v'
 
-# Starts/Stops: [Ollama, Docker] open-webui, SearXNG & Kokoro-FastAPI (TTS)
-llm() {
-  case "$1" in
-    start)
-      sudo systemctl start docker
-      docker compose -p llm start
-      nohup ollama serve &
-      ;;
-    stop)
-      docker compose -p llm stop
-      sudo systemctl stop docker
-      pkill ollama
-      ;;
-    start-min)
-      docker compose -p llm start
-      ;;
-    stop-min)
-      docker compose -p llm stop
-      ;;
-    *)
-      echo "Usage: llm { start | stop | start-min | stop-min}"
-      ;;
-  esac
-}
-
-alias llm-clean='sudo rm -rf $HOME/code/containers/llm/open-webui/uploads/* $HOME/code/containers/llm/open-webui/cache/audio/speech/*'
-
 # ssh
 alias ssh-vps='ssh -i $SECRET_VPS_KEY root@$SECRET_VPS_IP'
+
+# $HOME/bin & $HOME/code/workflows
+alias llm-clean='sudo rm -rf $HOME/code/workflow/open-webui/open-webui/{uploads/*,cache/audio/speech/*}'

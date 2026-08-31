@@ -178,8 +178,8 @@
         "tooltip-format": " {ifname} via {gwaddr}",
         "format-linked": "󰈀 (No IP) ",
         "format-disconnected": " ",
-        "on-click": "kitty -e nmtui",
-        "on-click-right": "kitty -e bluetui"
+        "on-click": "ghostty -e nmtui",
+        "on-click-right": "ghostty -e bluetui"
     },
 
     // (10/10) Tray

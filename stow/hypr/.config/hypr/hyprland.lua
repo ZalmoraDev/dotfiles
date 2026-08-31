@@ -39,10 +39,16 @@ hl.env("LIBVA_DRIVER_NAME", "nvidia")
 ---- MONITORS & WORKSPACES ----
 -------------------------------
 
--- 1) Laptop  16:10 1440p Bottom, Landscape secondary 456
--- 2) LG      16:9  1440p Top,    Landscape PRIMARY   123
+-- Home
+-- 1) Laptop  16:10 1440p Bottom, Landscape secondary 123
+-- 2) LG      16:9  1440p Top,    Landscape PRIMARY   456
 -- 3) Iiyama  9:16  1080p Right,  Portrait  tertiary  789
 
+-- Intern
+-- 1) Laptop  16:10 1440p Right, Landscape secondary 123
+-- 2) Monitor  16:9 1440p Center, Landscape secondary 456789
+
+-- Laptop
 hl.monitor({
     output   = "eDP-1",
     mode     = "2560x1600@165.01900",
@@ -55,6 +61,7 @@ hl.workspace_rule({ workspace = "1", monitor = "eDP-1", default = true })
 hl.workspace_rule({ workspace = "2", monitor = "eDP-1", default = true })
 hl.workspace_rule({ workspace = "3", monitor = "eDP-1", default = true })
 
+-- LG - Home
 hl.monitor({
     output   = "HDMI-A-1",
     mode     = "2560x1440@143.93300",
@@ -67,6 +74,7 @@ hl.workspace_rule({ workspace = "4", monitor = "HDMI-A-1", default = true })
 hl.workspace_rule({ workspace = "5", monitor = "HDMI-A-1", default = true })
 hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-1", default = true })
 
+-- Iiyama - Home
 hl.monitor({
     output    = "DP-2",
     mode      = "1920x1080@60.00000",
@@ -80,7 +88,15 @@ hl.workspace_rule({ workspace = "7", monitor = "DP-2", default = true })
 hl.workspace_rule({ workspace = "8", monitor = "DP-2", default = true })
 hl.workspace_rule({ workspace = "9", monitor = "DP-2", default = true })
 
-
+-- LG - Intern
+hl.monitor({
+    output   = "desc: Lenovo Group Limited P27h-20 V90CBDE4",
+    mode     = "2560x1440@143.93300",
+    position = "-2560x1440",
+    scale    = "1",
+    cm       = "srgb",
+    bitdepth = 8
+})
 
 -------------------
 ---- AUTOSTART ----
@@ -120,11 +136,21 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("anki"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("obsidian"))
 hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("spotify"))
 
--- ------------------------------------------------
--- Home row | Common apps, Window behavior & STT --
--- ------------------------------------------------
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(""))
-hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(""))
+-- ------------------------------------------------- --
+-- Home row | OS behavior, Window behavior & STT --
+-- ------------------------------------------------- --
+
+-- Media Controls (Quickbind)
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("playerctl play-pause")) -- 2 entries, this one is for 8BitDo controller support, other is "XF86AudioPause"
+hl.bind(mainMod .. " + SHIFT + A",  hl.dsp.exec_cmd("playerctl next"), { locked = true })
+hl.bind(mainMod .. " + CTRL + A",  hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+
+-- Screenshot (Quickbind)
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("hyprshot -m output -o $HOME/images/screenshots/$(date +%Y-%m)")) -- 2 entries, other is 'PRINT'
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region -o $HOME/images/screenshots/$(date +%Y-%m)")) -- 2 entries, other is 'PRINT .. " + SHIFT'
+hl.bind(mainMod .. " + CTRL + S", hl.dsp.exec_cmd("hyprshot -m window -o $HOME/images/screenshots/$(date +%Y-%m)")) -- 2 entries, other is 'PRINT .. " + CTRL'
+
+-- TODO: Add custom pomodoro timer controls
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(""))
 
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
@@ -181,13 +207,13 @@ end
 -- Rightmost | Common documents --
 -- -------------------------------
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("okular $HOME/documents/reading/lpic-1.pdf"))
-hl.bind(mainMod .. " + MINUS", hl.dsp.exec_cmd("okular -p 634  $HOME/documents/reading/lpic-1.pdf")) -- Review question answers
+hl.bind(mainMod .. " + EQUAL", hl.dsp.exec_cmd("okular -p 634  $HOME/documents/reading/lpic-1.pdf")) -- Review question answers
 
 hl.bind(mainMod .. " + SEMICOLON", hl.dsp.exec_cmd(""))
 hl.bind(mainMod .. " + APOSTROPHE", hl.dsp.exec_cmd(""))
 
 hl.bind(mainMod .. " + SLASH", hl.dsp.exec_cmd(""))
-hl.bind(mainMod .. " + BACKSLASH", hl.dsp.exec_cmd("libreoffice $HOME/documents/reading/jb-refererencecard.odg"))
+hl.bind(mainMod .. " + BACKSLASH", hl.dsp.exec_cmd("onlyoffice-desktopeditors $HOME/documents/reading/jb-refererencecard.odg"))
 
 -- ----------
 -- Special --
@@ -196,10 +222,10 @@ hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + SUPER_L", hl.dsp.exec_cmd("pkill rofi || rofi -show drun -show-icons"), { release = true }) -- open on first, closes on second
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/pinnedMenu.sh"))
 
--- Screenshot
-hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -o $HOME/images/screenshots/$(date +%Y-%m)")) -- Screenshot screen
-hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region -o $HOME/images/screenshots/$(date +%Y-%m)")) -- Screenshots region
-hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("hyprshot -m window -o $HOME/images/screenshots/$(date +%Y-%m)")) -- Screenshots window
+-- Screenshot (dedicated keyboard PrtSc)
+hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -o $HOME/images/screenshots/$(date +%Y-%m)")) -- 2 entries, other is 'mainmod .. " + S"'
+hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region -o $HOME/images/screenshots/$(date +%Y-%m)")) -- 2 entries, other is 'mainmod .. " + SHIFT + S"'
+hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("hyprshot -m window -o $HOME/images/screenshots/$(date +%Y-%m)")) -- 2 entries, other is 'mainmod .. " + CTRL + S"'
 
 -- Move focus
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
@@ -220,13 +246,14 @@ hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
 hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
 hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
+
 hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
 
 -- Requires playerctl
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true }) -- 2 entries, other is 'mainmod .. " + A"'
+hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true }) -- 2 entries, other is 'mainmod .. " + A"'
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 
@@ -282,9 +309,9 @@ hl.config({
 
         blur = {
             enabled   = true,
-            size      = 2,
+            size      = 1,
             passes    = 1,
-            vibrancy  = 0.1696,
+            noise     = 0.025
         },
 
         shadow = {
@@ -292,16 +319,18 @@ hl.config({
             range          = 2,
             render_power   = 2,
             sharp          = false,
-            color          = "rgba(FFFFFF0F)",
-            color_inactive = "rgba(000000FF)",
+            color          = "rgba(0000FFFF)",
+            color_inactive = "rgba(00FF00FF)",
             offset         = {0,0},
             scale          = 1.0
         },
 
         glow = {
             enabled = true,
-            range = 2;
-            color = "rgba(FFFFFF88)";
+            range = 4;
+            color = "rgba(FFFFFF43)";
+            --color = "rgba(FFAE0088)";
+            color_inactive = "rgba(00000088)",
         }
     },
 
@@ -316,10 +345,10 @@ hl.curve("linear",         { type = "bezier", points = { {0, 0},       {1, 1}   
 hl.curve("almostLinear",   { type = "bezier", points = { {0.5, 0.5},   {0.75, 1}    } })
 hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1}     } })
 
--- Default springs
-hl.curve("easy",           { type = "spring", mass = 1, stiffness = 71.2633, dampening = 15.8273644 })
+-- No springyness (updated since 0.56)
+hl.curve("easy", { type = "spring", mass = 1, stiffness = 480, dampening = 40 })
 
-hl.animation({ leaf = "global",        enabled = true,  speed = 20,   bezier = "default" }) -- Default = 10
+hl.animation({ leaf = "global",        enabled = true,  speed = 100,   bezier = "default" }) -- Default = 10
 hl.animation({ leaf = "border",        enabled = true,  speed = 5.39, bezier = "easeOutQuint" })
 hl.animation({ leaf = "windows",       enabled = true,  speed = 4.79, spring = "easy" })
 hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 4.1,  spring = "easy",         style = "popin 87%" })
@@ -384,15 +413,18 @@ hl.window_rule({
     no_focus = true
 })
 
---[[
--- Affinity (wine) | Window creation issue
--- fix tooltips & tab dragging
-windowrule = no_initial_focus on, no_focus on, match:class ^(.*affinity\.exe.*)$, match:title ^(win.*)$
-windowrule = no_initial_focus on, no_focus on, match:class ^(.*affinity\.exe.*)$, match:title ^\\s$
-]]
 
---[[
--- See through image application to trace them
-windowrule = float on, opacity 0.5 1, match:class org.nomacs.ImageLounge
-windowrule = float on, opacity 0.5 1, match:class gimp
-]]
+hl.window_rule({
+    match = {
+        class = "blender",
+    },
+    float = true,
+    size = { 1600, 1000 },
+})
+
+hl.window_rule({
+    match = {
+        class = "anki",
+    },
+    size = { 800, 600 },
+})
