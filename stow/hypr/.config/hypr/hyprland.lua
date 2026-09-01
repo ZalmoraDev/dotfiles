@@ -44,39 +44,34 @@ hl.env("LIBVA_DRIVER_NAME", "nvidia")
 -- 2) LG      16:9  1440p Top,    Landscape PRIMARY   456
 -- 3) Iiyama  9:16  1080p Right,  Portrait  tertiary  789
 
--- Intern
+-- Internship
 -- 1) Laptop  16:10 1440p Right, Landscape secondary 123
--- 2) Monitor  16:9 1440p Center, Landscape secondary 456789
+-- 2) Lenovo  16:9  1440p Center, Landscape PRIMARY   456
+-- 3) LG      16:9  1080p Left,   Landscape tertiary  789
 
 -- Laptop
 hl.monitor({
-    output   = "eDP-1",
+    output   = "desc:California Institute of Technology 0x1600",
     mode     = "2560x1600@165.01900",
     position = "0x1440",
     scale    = "1.25",
     cm       = "srgb",
     bitdepth = 8
 })
-hl.workspace_rule({ workspace = "1", monitor = "eDP-1", default = true })
-hl.workspace_rule({ workspace = "2", monitor = "eDP-1", default = true })
-hl.workspace_rule({ workspace = "3", monitor = "eDP-1", default = true })
+
 
 -- LG - Home
 hl.monitor({
-    output   = "HDMI-A-1",
+    output   = "desc:LG Electronics LG ULTRAGEAR 309MAHUDPQ89",
     mode     = "2560x1440@143.93300",
     position = "0x0",
     scale    = "1",
     cm       = "srgb",
     bitdepth = 8
 })
-hl.workspace_rule({ workspace = "4", monitor = "HDMI-A-1", default = true })
-hl.workspace_rule({ workspace = "5", monitor = "HDMI-A-1", default = true })
-hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-1", default = true })
-
 -- Iiyama - Home
 hl.monitor({
-    output    = "DP-2",
+    output    = "desc:Iiyama North America PL2466H 1177004102878",
     mode      = "1920x1080@60.00000",
     position  = "2560x0",
     scale     = "1",
@@ -84,19 +79,55 @@ hl.monitor({
     bitdepth  = 8,
     transform = 3 -- Right is up, Left is down
 })
-hl.workspace_rule({ workspace = "7", monitor = "DP-2", default = true })
-hl.workspace_rule({ workspace = "8", monitor = "DP-2", default = true })
-hl.workspace_rule({ workspace = "9", monitor = "DP-2", default = true })
 
--- LG - Intern
+
+-- Lenovo - Internship
 hl.monitor({
-    output   = "desc: Lenovo Group Limited P27h-20 V90CBDE4",
-    mode     = "2560x1440@143.93300",
+    output   = "desc:Lenovo Group Limited P27h-20 V90CBDE4",
     position = "-2560x1440",
     scale    = "1",
     cm       = "srgb",
     bitdepth = 8
 })
+-- LG - Internship
+hl.monitor({
+    output   = "desc:LG Electronics IPS235 Serial Number",
+    position = "-4480x1440",
+    scale    = "1",
+    cm       = "srgb",
+    bitdepth = 8
+})
+
+-- Laptop workspaces (Always)
+hl.workspace_rule({ workspace = "1", monitor = "desc:California Institute of Technology 0x1600", default = true })
+hl.workspace_rule({ workspace = "2", monitor = "desc:California Institute of Technology 0x1600", default = true })
+hl.workspace_rule({ workspace = "3", monitor = "desc:California Institute of Technology 0x1600", default = true })
+
+local function apply_home_workspaces()
+    hl.workspace_rule({ workspace = "4", monitor = "desc:LG Electronics LG ULTRAGEAR 309MAHUDPQ89", default = true })
+    hl.workspace_rule({ workspace = "5", monitor = "desc:LG Electronics LG ULTRAGEAR 309MAHUDPQ89" })
+    hl.workspace_rule({ workspace = "6", monitor = "desc:LG Electronics LG ULTRAGEAR 309MAHUDPQ89" })
+    hl.workspace_rule({ workspace = "7", monitor = "desc:Iiyama North America PL2466H 1177004102878", default = true })
+    hl.workspace_rule({ workspace = "8", monitor = "desc:Iiyama North America PL2466H 1177004102878" })
+    hl.workspace_rule({ workspace = "9", monitor = "desc:Iiyama North America PL2466H 1177004102878" })
+end
+
+local function apply_internship_workspaces()
+    hl.workspace_rule({ workspace = "4", monitor = "desc:Lenovo Group Limited P27h-20 V90CBDE4", default = true })
+    hl.workspace_rule({ workspace = "5", monitor = "desc:Lenovo Group Limited P27h-20 V90CBDE4" })
+    hl.workspace_rule({ workspace = "6", monitor = "desc:Lenovo Group Limited P27h-20 V90CBDE4" })
+    hl.workspace_rule({ workspace = "7", monitor = "desc:LG Electronics IPS235 Serial Number", default = true })
+    hl.workspace_rule({ workspace = "8", monitor = "desc:LG Electronics IPS235 Serial Number" })
+    hl.workspace_rule({ workspace = "9", monitor = "desc:LG Electronics IPS235 Serial Number" })
+end
+
+hl.on("monitor.added", function(m)
+    if m.description:find("LG ULTRAGEAR", 1, true) then
+        apply_home_workspaces()
+    elseif m.description:find("Lenovo Group Limited P27h-20", 1, true) then
+        apply_internship_workspaces()
+    end
+end)
 
 -------------------
 ---- AUTOSTART ----
