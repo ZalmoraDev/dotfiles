@@ -84,7 +84,7 @@ hl.monitor({
 -- Lenovo - Internship
 hl.monitor({
     output   = "desc:Lenovo Group Limited P27h-20 V90CBDE4",
-    position = "-2560x1440",
+    position = "2048x1440",
     scale    = "1",
     cm       = "srgb",
     bitdepth = 8
@@ -92,10 +92,11 @@ hl.monitor({
 -- LG - Internship
 hl.monitor({
     output   = "desc:LG Electronics IPS235 Serial Number",
-    position = "-4480x1440",
+    position = "4608x1440",
     scale    = "1",
     cm       = "srgb",
-    bitdepth = 8
+    bitdepth = 8,
+    transform = 3 -- Right is up, Left is down
 })
 
 -- Laptop workspaces (Always)
@@ -105,20 +106,20 @@ hl.workspace_rule({ workspace = "3", monitor = "desc:California Institute of Tec
 
 local function apply_home_workspaces()
     hl.workspace_rule({ workspace = "4", monitor = "desc:LG Electronics LG ULTRAGEAR 309MAHUDPQ89", default = true })
-    hl.workspace_rule({ workspace = "5", monitor = "desc:LG Electronics LG ULTRAGEAR 309MAHUDPQ89" })
-    hl.workspace_rule({ workspace = "6", monitor = "desc:LG Electronics LG ULTRAGEAR 309MAHUDPQ89" })
+    hl.workspace_rule({ workspace = "5", monitor = "desc:LG Electronics LG ULTRAGEAR 309MAHUDPQ89", default = true })
+    hl.workspace_rule({ workspace = "6", monitor = "desc:LG Electronics LG ULTRAGEAR 309MAHUDPQ89", default = true })
     hl.workspace_rule({ workspace = "7", monitor = "desc:Iiyama North America PL2466H 1177004102878", default = true })
-    hl.workspace_rule({ workspace = "8", monitor = "desc:Iiyama North America PL2466H 1177004102878" })
-    hl.workspace_rule({ workspace = "9", monitor = "desc:Iiyama North America PL2466H 1177004102878" })
+    hl.workspace_rule({ workspace = "8", monitor = "desc:Iiyama North America PL2466H 1177004102878", default = true })
+    hl.workspace_rule({ workspace = "9", monitor = "desc:Iiyama North America PL2466H 1177004102878", default = true })
 end
 
 local function apply_internship_workspaces()
     hl.workspace_rule({ workspace = "4", monitor = "desc:Lenovo Group Limited P27h-20 V90CBDE4", default = true })
-    hl.workspace_rule({ workspace = "5", monitor = "desc:Lenovo Group Limited P27h-20 V90CBDE4" })
-    hl.workspace_rule({ workspace = "6", monitor = "desc:Lenovo Group Limited P27h-20 V90CBDE4" })
+    hl.workspace_rule({ workspace = "5", monitor = "desc:Lenovo Group Limited P27h-20 V90CBDE4", default = true })
+    hl.workspace_rule({ workspace = "6", monitor = "desc:Lenovo Group Limited P27h-20 V90CBDE4", default = true })
     hl.workspace_rule({ workspace = "7", monitor = "desc:LG Electronics IPS235 Serial Number", default = true })
-    hl.workspace_rule({ workspace = "8", monitor = "desc:LG Electronics IPS235 Serial Number" })
-    hl.workspace_rule({ workspace = "9", monitor = "desc:LG Electronics IPS235 Serial Number" })
+    hl.workspace_rule({ workspace = "8", monitor = "desc:LG Electronics IPS235 Serial Number", default = true })
+    hl.workspace_rule({ workspace = "9", monitor = "desc:LG Electronics IPS235 Serial Number", default = true })
 end
 
 hl.on("monitor.added", function(m)
@@ -143,10 +144,10 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("kwalletd6") -- TODO: Still needed? was for Brave not remembering logins/cookies/sessions
 
 
-    hl.exec_cmd("anki", { workspace = "4 silent" })
+    hl.exec_cmd("sleep 5; anki", { workspace = "4 silent" })
 
-    hl.exec_cmd("brave", { workspace = "7 silent" })
-    hl.exec_cmd("spotify", { workspace = "9 silent" })
+    hl.exec_cmd("sleep 5; brave", { workspace = "7 silent" })
+    hl.exec_cmd("sleep 5; spotify", { workspace = "9 silent" })
 end)
 
 
