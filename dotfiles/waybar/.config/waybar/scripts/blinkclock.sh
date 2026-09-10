@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 TIME=$(date "+%a %-d %H:%M")
 MIN=$(date "+%M")

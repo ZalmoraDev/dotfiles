@@ -1,5 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
+# Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { config, pkgs, ... }:
@@ -8,12 +7,12 @@ let
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
       (import "${home-manager}/nixos")
     ];
 
-  # Set ownership of nix config to normal users, no sudo shenanigans
+  # Set ownership of /etc/nixos to 'users' group, no sudo needed
   system.activationScripts.nixosConfigOwnership = {
     text = ''
       chgrp -R users /etc/nixos
@@ -23,12 +22,19 @@ in
 
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
-  # home-manager.backupFileExtension = "backup"; # prevent HM from overwriting files, backups originals as '.backup'
   home-manager.users.sv = import ./home.nix;
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 5;  
+
+
+  # GPU Support
   hardware.graphics.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
@@ -39,65 +45,29 @@ in
   };
   services.xserver.videoDrivers = ["nvidia"];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 5;  
 
-  networking.hostName = "helios"; # Define your hostname.
+  # User & System
+  networking.hostName = "helios";
+  users.users."sv" = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" ];
+    packages = with pkgs; [];
+  };
+    
+  # Enable networking & bluetooth
+  networking.networkmanager.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
-
-
-
-
-  # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "nl_NL.UTF-8";
-    LC_IDENTIFICATION = "nl_NL.UTF-8";
-    LC_MEASUREMENT = "nl_NL.UTF-8";
-    LC_MONETARY = "nl_NL.UTF-8";
-    LC_NAME = "nl_NL.UTF-8";
-    LC_NUMERIC = "nl_NL.UTF-8";
-    LC_PAPER = "nl_NL.UTF-8";
-    LC_TELEPHONE = "nl_NL.UTF-8";
-    LC_TIME = "nl_NL.UTF-8";
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."sv" = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
-    packages = with pkgs; [];
-  };
-
-
-
-
-
-
+  # TODO: Figure out how to have home-manager 'own' /etc\ folders
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
@@ -108,6 +78,8 @@ in
     withUWSM = true;
     xwayland.enable = false;
   };
+
+  programs.xwayland.enable = true;
 
   services.udisks2.enable = true; # Used by Dolphin to show mounted devices
 
@@ -140,6 +112,8 @@ in
 
     ghostty                 # 2026-09-08 | Terminal emulator (main)
     git                     # 2026-09-08 | Version control system
+    git-fame                # 2026-09-11 | Git contribution statistic
+    gource                  # 2026-09-11 | Git contribution timeline visualizer
 
     hyprland                # 2026-09-08 | Hyprland, Tiling window manager
     hypridle                # 2026-09-08 | Hyprland sleep
@@ -217,7 +191,8 @@ in
 
     adwaita-icon-theme                    # 2026-09-10 | GNOME Adwaita cursor theme
 
-    kdePackages.kdegraphics-thumbnailers  # 2026-09-10 | More Dolphin file previews (blender, etc.)
+    kdePackages.kdegraphics-thumbnailers  # 2026-09-10 | More Dolphin file previews (blender)
+    kdePackages.kio-extras                # 2026-09-11 | More Dolphin file previews (blender)
   ];
 
   fonts.packages = with pkgs; [
@@ -240,6 +215,31 @@ in
 
 
 
+
+
+  # Set your time zone.
+  time.timeZone = "Europe/Amsterdam";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "nl_NL.UTF-8";
+    LC_IDENTIFICATION = "nl_NL.UTF-8";
+    LC_MEASUREMENT = "nl_NL.UTF-8";
+    LC_MONETARY = "nl_NL.UTF-8";
+    LC_NAME = "nl_NL.UTF-8";
+    LC_NUMERIC = "nl_NL.UTF-8";
+    LC_PAPER = "nl_NL.UTF-8";
+    LC_TELEPHONE = "nl_NL.UTF-8";
+    LC_TIME = "nl_NL.UTF-8";
+  };
+
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
 
 
 
