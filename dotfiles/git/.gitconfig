@@ -1,5 +1,7 @@
 [user]
-	email = vertex4004@protonmail.com
-	name = Stef Visser
+        email = vertex4004@protonmail.com
+        name = Stef Visser
 [init]
-	defaultBranch = main
+        defaultBranch = main
+[core]
+        autocrlf = input
