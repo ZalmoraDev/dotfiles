@@ -45,7 +45,7 @@ hl.env("LIBVA_DRIVER_NAME", "nvidia")
 -- 3) Iiyama  9:16  1080p Right,  Portrait  tertiary  789
 
 -- Internship
--- 1) Laptop  16:10 1440p Right, Landscape secondary 123
+-- 1) Laptop  16:10 1440p Right,  Landscape secondary 123
 -- 2) Lenovo  16:9  1440p Center, Landscape PRIMARY   456
 -- 3) LG      16:9  1080p Left,   Landscape tertiary  789
 
@@ -359,10 +359,11 @@ hl.config({
 
         glow = {
             enabled = true,
-            range = 4;
-            color = "rgba(FFFFFF43)";
+            range = 4,
+            color = "rgba(FFFFFF43)",
             --color = "rgba(FFAE0088)";
-            color_inactive = "rgba(00000088)",
+            --color_inactive = "rgba(00000088)",
+            color_inactive = "rgba(000000ff)",
         }
     },
 
@@ -451,12 +452,20 @@ hl.window_rule({
         class = "blender",
     },
     float = true,
-    size = { 1600, 1000 },
+    size = { 1600, 1000 }
 })
 
 hl.window_rule({
     match = {
         class = "anki",
     },
-    size = { 800, 600 },
+    size = { 800, 600 }
+})
+
+hl.window_rule({
+    match = {
+        class = "dolphin",
+    },
+    float = true,
+    size = { 800, 600 }
 })

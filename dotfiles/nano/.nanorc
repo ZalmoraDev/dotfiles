@@ -1,0 +1,2 @@
+include ~/.local/share/nano/syntax/*.nanorc
+set titlecolor white,black
