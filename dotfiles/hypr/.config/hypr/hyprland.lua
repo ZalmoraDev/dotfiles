@@ -359,11 +359,11 @@ hl.config({
 
         glow = {
             enabled = true,
-            range = 4,
+            range = 6,
             color = "rgba(FFFFFF43)",
             --color = "rgba(FFAE0088)";
-            --color_inactive = "rgba(00000088)",
-            color_inactive = "rgba(000000ff)",
+            color_inactive = "rgba(00000088)",
+            --color_inactive = "rgba(000000ff)",
         }
     },
 

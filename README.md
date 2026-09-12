@@ -9,6 +9,10 @@
 CURRENTLY MIGRATING TO NIXOS DENDRITIC SETUP
 
 
+Home Manager acts as 'GNU stow', managing symlinks  
+opposed to writing config sytnax
+
+
 
 ## What is this?
 1) Dotfiles, using GNU stow
