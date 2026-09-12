@@ -30,7 +30,7 @@ in
 
   #home.file.".config/blender".source = dotfiles + "/blender/.config/blender";                           # 2026-09-12 | blender
 
-  home.file.".clangformat".source = dotfiles + "/clang/.clangformat";                                   # 2026-09-10 | clangformat
+  home.file.".clang-format".source = dotfiles + "/clang/.clang-format";                                 # 2026-09-10 | clangformat
 
   home.file.".config/dolphinrc".source = dotfiles + "/dolphin/.config/dolphinrc";                       # 2026-09-12 | dolphin
 
